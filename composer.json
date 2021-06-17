@@ -1,24 +1,25 @@
 {
-    "name": "vendor_slug/package_slug",
-    "description": ":package_description",
+    "name": "bluefyn-international/report-engine",
+    "description": "General reporting engine for Laravel",
     "keywords": [
-        ":vendor_name",
+        "bluefyn-international",
         "laravel",
-        "package_slug"
+        "report-engine"
     ],
-    "homepage": "https://github.com/vendor_slug/package_slug",
+    "homepage": "https://github.com/bluefyn-international/report-engine",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "BluefynInternational",
+            "email": "quentin.schmick@nathanjames.com",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^7.4|^8.0",
         "spatie/laravel-package-tools": "^1.4.3",
-        "illuminate/contracts": "^8.37"
+        "illuminate/contracts": "^8.37",
+        "bluefyn-international/sidekick": "^1.0"
     },
     "require-dev": {
         "brianium/paratest": "^6.2",
@@ -30,13 +31,12 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "BluefynInternational\\ReportEngine\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "BluefynInternational\\ReportEngine\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -50,10 +50,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "BluefynInternational\\ReportEngine\\ReportEngineServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\SkeletonFacade"
+                "ReportEngine": "BluefynInternational\\ReportEngine\\ReportEngineFacade"
             }
         }
     },

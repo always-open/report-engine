@@ -1,6 +1,6 @@
 <?php
 
-namespace VendorName\Skeleton\Tests;
+namespace BluefynInternational\ReportEngine\Tests;
 
 class ExampleTest extends TestCase
 {
