@@ -117,11 +117,11 @@ class Enum extends BaseType
     public function renderFilter(string $label, string $name, array $actionTypes, BaseType $columnType, Collection $value)
     {
         return view('report-engine::partials.enum-filter')->with([
-            'label'   => $label,
-            'field'   => $name,
+            'label' => $label,
+            'field' => $name,
             'options' => $this->options,
-            'value'   => $value,
-            'useKey'  => $this->use_keys,
+            'value' => $value,
+            'useKey' => $this->use_keys,
         ]);
     }
 }

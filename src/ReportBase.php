@@ -210,8 +210,8 @@ abstract class ReportBase implements Responsable, Arrayable
     {
         return $this->buildColumns()->columns->map(function (Column $column) {
             $array = [
-                'title'     => $column->label(),
-                'field'     => $column->name(),
+                'title' => $column->label(),
+                'field' => $column->name(),
                 'formatter' => $column->formatter(),
             ];
 
@@ -344,7 +344,7 @@ abstract class ReportBase implements Responsable, Arrayable
             'columns' => collect($this->columns)->map(function (Column $column) {
                 return $column->toArray();
             }),
-            'data'         => $this->rowsArray,
+            'data' => $this->rowsArray,
             'emptyMessage' => $this->emptyMessage(),
         ];
     }
@@ -419,14 +419,14 @@ abstract class ReportBase implements Responsable, Arrayable
     public function toHtml() : Response
     {
         return response()->view('report-engine::base-web', [
-            'title'               => $this->title(),
-            'emptyMessage'        => $this->emptyMessage(),
-            'columns'             => $this->generateTabulatorColumns(),
-            'filterColumns'       => $this->getFilterableColumns(),
+            'title' => $this->title(),
+            'emptyMessage' => $this->emptyMessage(),
+            'columns' => $this->generateTabulatorColumns(),
+            'filterColumns' => $this->getFilterableColumns(),
             'autoloadInitialData' => $this->autoloadInitialData,
-            'route'               => route($this->getCurrentRequest()->route()->getName(), $this->getCurrentRequest()->route()->parameters()),
-            'rowContextActions'   => $this->rowContextActions(),
-            'reportButtons'       => $this->reportButtons(),
+            'route' => route($this->getCurrentRequest()->route()->getName(), $this->getCurrentRequest()->route()->parameters()),
+            'rowContextActions' => $this->rowContextActions(),
+            'reportButtons' => $this->reportButtons(),
         ]);
     }
 
@@ -473,8 +473,8 @@ abstract class ReportBase implements Responsable, Arrayable
 
         $filterColumns->chunk(4)->each(function (Collection $columns) use (&$output, $fullFilterRows) {
             $output .= view('report-engine::partials.filters-row')->with([
-                'columns'       => $columns,
-                'offset'        => 3 - count($columns),
+                'columns' => $columns,
+                'offset' => 3 - count($columns),
                 'includeSubmit' => ! $fullFilterRows && count($columns) < 4,
             ])->render();
         });

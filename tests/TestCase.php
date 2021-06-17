@@ -2,9 +2,9 @@
 
 namespace BluefynInternational\ReportEngine\Tests;
 
+use BluefynInternational\ReportEngine\ReportEngineServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use BluefynInternational\ReportEngine\ReportEngineServiceProvider;
 
 class TestCase extends Orchestra
 {

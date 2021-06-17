@@ -110,12 +110,12 @@ abstract class BaseType
     public function renderFilter(string $label, string $name, array $actionTypes, self $columnType, Collection $value)
     {
         return view('report-engine::partials.base-filter')->with([
-            'label'       => $label,
-            'field'       => $name,
-            'value'       => $value,
+            'label' => $label,
+            'field' => $name,
+            'value' => $value,
             'actionTypes' => $actionTypes,
-            'inputType'   => $columnType->inputType(),
-            'classes'     => $this->styleClass(),
+            'inputType' => $columnType->inputType(),
+            'classes' => $this->styleClass(),
             'placeholder' => $this->placeholder(),
         ]);
     }

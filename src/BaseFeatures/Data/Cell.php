@@ -199,15 +199,15 @@ class Cell
     {
         return [
             'column' => [
-                'name'  => $this->column->name(),
+                'name' => $this->column->name(),
                 'label' => $this->column->label(),
-                'type'  => $this->column->type()->name(),
+                'type' => $this->column->type()->name(),
             ],
-            'value_raw'       => $this->getValue(),
+            'value_raw' => $this->getValue(),
             'value_formatted' => $this->getFormattedValue($result),
-            'tooltip'         => $this->getTooltip(),
-            'href'            => $this->getHref(),
-            'href_target'     => $this->getHrefTarget(),
+            'tooltip' => $this->getTooltip(),
+            'href' => $this->getHref(),
+            'href_target' => $this->getHrefTarget(),
         ];
     }
 }

@@ -75,9 +75,9 @@ class DateTime extends BaseType
     public function formatterParams(): array
     {
         return [
-            'inputFormat'  => 'YYYY-MM-DD HH:ii:ss',
+            'inputFormat' => 'YYYY-MM-DD HH:ii:ss',
             'outputFormat' => $this->date_time_format,
-            'timezone'     => $this->outputTzName ?? 'America/New_York',
+            'timezone' => $this->outputTzName ?? 'America/New_York',
         ];
     }
 
@@ -96,12 +96,12 @@ class DateTime extends BaseType
         });
 
         return view('report-engine::partials.date-filter')->with([
-            'label'       => $label,
-            'field'       => $name,
-            'value'       => $value,
+            'label' => $label,
+            'field' => $name,
+            'value' => $value,
             'actionTypes' => $actionTypes,
-            'inputType'   => $columnType->inputType(),
-            'classes'     => $this->styleClass(),
+            'inputType' => $columnType->inputType(),
+            'classes' => $this->styleClass(),
             'placeholder' => $this->placeholder(),
         ]);
     }
