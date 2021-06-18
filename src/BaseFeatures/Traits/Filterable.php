@@ -9,9 +9,9 @@ use Illuminate\Support\Collection;
 trait Filterable
 {
     /**
-     * @var \Illuminate\Support\Collection
+     * @var Collection|null
      */
-    protected $appliedFilters;
+    protected ?Collection $appliedFilters = null;
 
     /**
      * @param array   $params
@@ -85,16 +85,19 @@ trait Filterable
         if (empty($this->appliedFilters)) {
             $cols = $this->mapFieldsToColumns($params);
 
+            /**
+             * @psalm-suppress UnusedClosureParam
+             */
             $this->appliedFilters = collect($params)
                 ->filter(function ($filters, $field) use ($cols) {
                     return $cols[$field] ?? null;
                 })
-                ->map(function ($filters, $field) {
+                ->map(function ($filters) {
                     return collect($filters)->mapWithKeys(function ($value, $filter) {
                         return [trim($filter) => trim($value)];
                     });
                 })
-                ->map(function ($filters, $field) use ($cols, $params) {
+                ->map(function ($filters, $field) use ($cols) {
                     $column = $cols[$field];
                     $filterClasses = $column->filters();
 
@@ -105,7 +108,10 @@ trait Filterable
                     return collect($filters)->map(function ($value, $filter) use ($filterClasses, $column) {
                         $class = static::matchFilter($filterClasses, $filter);
 
-                        return new $class($column, $value);
+                        if ($class) {
+                            return new $class($column, $value);
+                        }
+                        return null;
                     });
                 });
         }

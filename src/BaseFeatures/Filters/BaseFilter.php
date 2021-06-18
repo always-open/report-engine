@@ -67,7 +67,7 @@ abstract class BaseFilter
     }
 
     /**
-     * @return null
+     * @return mixed
      */
     public function getValue()
     {

@@ -20,7 +20,7 @@ class GreaterThanFilter extends BaseFilter
     }
 
     /**
-     * @return null|string
+     * @return null|string|mixed
      */
     public function getValue()
     {

@@ -158,9 +158,9 @@ abstract class ReportBase implements Responsable, Arrayable
      *
      * @TODO Manage pagination
      *
-     * @return iterable
+     * @return Collection
      */
-    protected function runQuery(Builder $query, ?int $perPageLimit = null): iterable
+    protected function runQuery(Builder $query, ?int $perPageLimit = null): Collection
     {
         return $query->get();
     }
@@ -383,7 +383,8 @@ abstract class ReportBase implements Responsable, Arrayable
         /** @var Collection $response */
         $response = collect(DB::select("EXPLAIN " . $this->getSql()))->toJson(JSON_PRETTY_PRINT);
 
-        return response($response)
+        return response()
+            ->setContent($response)
             ->header('Content-Type', 'text/plain');
     }
 

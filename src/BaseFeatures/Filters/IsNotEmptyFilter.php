@@ -14,6 +14,9 @@ class IsNotEmptyFilter extends BaseFilter
      */
     public function apply(Builder $builder, array $options = []) : Builder
     {
+        /**
+         * @psalm-suppress ImplicitToStringCast
+         */
         return $builder->whereNotNull($this->getField());
     }
 

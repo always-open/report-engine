@@ -18,24 +18,24 @@ class Cell
     protected $raw_value = null;
 
     /**
-     * @var Column|null
+     * @var Column
      */
-    protected $column;
+    protected Column $column;
 
     /**
      * @var string|null
      */
-    protected $tooltip = null;
+    protected ?string $tooltip = null;
 
     /**
      * @var string|null
      */
-    protected $href = null;
+    protected ?string $href = null;
 
     /**
      * @var string|null
      */
-    protected $href_target = null;
+    protected ?string $href_target = null;
 
     /**
      * Cell constructor.

@@ -6,16 +6,19 @@ use Illuminate\Support\Collection;
 
 abstract class BaseType
 {
+    /**
+     * @var mixed
+     */
     protected $default = null;
 
-    protected $styleClasses = '';
+    protected string $styleClasses = '';
 
-    protected $placeholder = '';
+    protected string $placeholder = '';
 
     /**
      * @var null|string
      */
-    protected $formatter = null;
+    protected ?string $formatter = null;
 
     /**
      * @param mixed       $value
@@ -99,23 +102,23 @@ abstract class BaseType
     }
 
     /**
-     * @param string $label
-     * @param string $name
-     * @param array  $actionTypes
-     * @param self   $columnType
-     * @param mixed  $value
+     * @param string      $label
+     * @param string      $name
+     * @param array       $actionTypes
+     * @param self        $columnType
+     * @param Collection  $value
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function renderFilter(string $label, string $name, array $actionTypes, self $columnType, Collection $value)
     {
         return view('report-engine::partials.base-filter')->with([
-            'label' => $label,
-            'field' => $name,
-            'value' => $value,
+            'label'       => $label,
+            'field'       => $name,
+            'value'       => $value,
             'actionTypes' => $actionTypes,
-            'inputType' => $columnType->inputType(),
-            'classes' => $this->styleClass(),
+            'inputType'   => $columnType->inputType(),
+            'classes'     => $this->styleClass(),
             'placeholder' => $this->placeholder(),
         ]);
     }
@@ -146,5 +149,10 @@ abstract class BaseType
     public function formatter() : string
     {
         return $this->formatter ?? 'plaintext';
+    }
+
+    public function getOptions() : array
+    {
+        return [];
     }
 }
