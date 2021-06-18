@@ -15,18 +15,111 @@ You can install the package via composer:
 composer require bluefyn-international/report-engine
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --provider="BluefynInternational\ReportEngine\ReportEngineServiceProvider" --tag="report-engine-migrations"
-php artisan migrate
-```
-
 ## Usage
 
+### Create a report
+
+Create a report that extends the ReportBase. Within this class you will define the query to fetch the data as well as 
+the columns which will be output.
+
 ```php
-$report-engine = new BluefynInternational\ReportEngine();
-echo $report-engine->echoPhrase('Hello, Spatie!');
+<?php
+
+namespace App\Reports\User;
+
+use App\Models\User;
+use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Text;
+use BluefynInternational\ReportEngine\ReportBase;
+use Illuminate\Database\Query\Builder;
+
+class UserReport extends ReportBase
+{
+    protected $autoloadInitialData = true;
+
+    /**
+     * @return string
+     */
+    public function title(): string
+    {
+        return 'User Maintenance';
+    }
+
+    /**
+     * @return string
+     */
+    public function description(): string
+    {
+        return 'List of all users within the system';
+    }
+
+    /**
+     * @return Builder
+     */
+    public function baseQuery(): Builder
+    {
+        return User::toBase()
+            ->select([
+                'id',
+                'email',
+                'name',
+            ]);
+    }
+
+    /**
+     * @return array
+     */
+    public function availableColumns(): array
+    {
+        return [
+            'name' => [
+                'label'      => 'Name',
+                'filterable' => true,
+                'type'       => new Text(),
+            ],
+            'email' => [
+                'label'      => 'Email',
+                'filterable' => true,
+                'type'       => new Text(),
+            ],
+        ];
+    }
+}
+
+```
+
+### Create a controller
+
+Create a controller to output the report
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Reports\User\UserReport;
+
+class UserController extends Controller
+{
+    /**
+     * @return UserReport
+     */
+    public function index() : UserReport
+    {
+        return app(UserReport::class);
+    }
+}
+```
+
+### Create a route
+
+When creating a route ensure you include `multiformat` as this will handle things like `.sql` and `.json` endpoint calls.
+
+```php
+<?php
+
+use App\Http\Controllers\UserController;
+
+Route::get('users', [UserController::class, 'index'])
+    ->multiformat();
 ```
 
 ## Testing
