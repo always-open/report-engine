@@ -2,9 +2,9 @@
 
 namespace BluefynInternational\ReportEngine\Tests\Unit;
 
+use BluefynInternational\ReportEngine\Tests\TestCase;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
-use BluefynInternational\ReportEngine\Tests\TestCase;
 
 class ReportBaseTest extends TestCase
 {

@@ -2,8 +2,8 @@
 
 namespace BluefynInternational\ReportEngine\Tests;
 
-use Orchestra\Testbench\TestCase as Orchestra;
 use BluefynInternational\ReportEngine\ReportEngineServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {

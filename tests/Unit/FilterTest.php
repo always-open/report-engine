@@ -14,9 +14,9 @@ use BluefynInternational\ReportEngine\BaseFeatures\Filters\IsNotEmptyFilter;
 use BluefynInternational\ReportEngine\BaseFeatures\Filters\IsTrueFilter;
 use BluefynInternational\ReportEngine\BaseFeatures\Filters\LessThanFilter;
 use BluefynInternational\ReportEngine\BaseFeatures\Filters\LessThanOrEqualFilter;
+use BluefynInternational\ReportEngine\Tests\TestCase;
 use BluefynInternational\Sidekick\Helpers\Query;
 use Illuminate\Support\Facades\DB;
-use BluefynInternational\ReportEngine\Tests\TestCase;
 
 class FilterTest extends TestCase
 {

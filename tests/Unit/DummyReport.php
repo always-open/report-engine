@@ -43,7 +43,7 @@ class DummyReport extends ReportBase
     {
         return [
             'name' => [
-                'type'       => new Text(),
+                'type' => new Text(),
                 'filterable' => true,
             ],
         ];

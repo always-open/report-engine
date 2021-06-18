@@ -19,12 +19,12 @@ class RowTest extends TestCase
     public function setUp(): void
     {
         $this->result = (object) [
-            'id'    => 1,
-            'name'  => 'Test',
+            'id' => 1,
+            'name' => 'Test',
             'dummy' => 'Tester',
         ];
         $this->column = new Column('name', [
-            'type'       => new Text(),
+            'type' => new Text(),
             'filterable' => true,
         ]);
         $this->cell = new Cell($this->column, $this->result);
