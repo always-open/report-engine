@@ -12,6 +12,17 @@ services:
       - ./:/var/www
     networks:
       - report-engine
+  db:
+    image: mysql:8.0.20
+    container_name: report-engine-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_ROOT_PASSWORD: test
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - report-engine
 
 networks:
   report-engine:
