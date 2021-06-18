@@ -82,7 +82,7 @@ trait Sortable
             ->mapWithKeys(function ($order_by) {
                 return [
                     data_get($order_by, 'column', data_get($order_by, 'sql')) => [
-                        'type'      => data_get($order_by, 'type'),
+                        'type' => data_get($order_by, 'type'),
                         'direction' => data_get($order_by, 'direction', 'asc'),
                     ],
                 ];

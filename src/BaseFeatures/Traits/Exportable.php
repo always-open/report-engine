@@ -128,12 +128,12 @@ trait Exportable
         };
 
         $headers = [
-            'Content-Type'        => $contentType,
+            'Content-Type' => $contentType,
             'Content-Disposition' => 'attachment; filename="' . $filename . '"',
-            'Expires'             => 'Mon, 26 Jul 1997 05:00:00 GMT', // Date in the past
-            'Last-Modified'       => Carbon::now()->format('D, d M Y H:i:s'),
-            'Cache-Control'       => 'cache, must-revalidate',
-            'Pragma'              => 'public',
+            'Expires' => 'Mon, 26 Jul 1997 05:00:00 GMT', // Date in the past
+            'Last-Modified' => Carbon::now()->format('D, d M Y H:i:s'),
+            'Cache-Control' => 'cache, must-revalidate',
+            'Pragma' => 'public',
         ];
 
         return response()->stream($callback, 200, $headers);
