@@ -122,6 +122,32 @@ Route::get('users', [UserController::class, 'index'])
     ->multiformat();
 ```
 
+#### Routes
+
+Multiformat adds handling multiple formats to the url which can give the following output building upon the above 
+examples.
+
+This will output an HTML page that will contain a tabulator table and make ajax requests to get the data needed.
+```
+{{ base_url }}/users
+```
+
+This will output a JSON payload of the data
+```
+{{ base_url }}/users.json
+```
+
+This will output the entire SQL query, useful for debugging
+```
+{{ base_url }}/users.sql
+```
+
+This will return the output of the explain command for the query, useful for debugging
+```
+{{ base_url }}/users.explain
+```
+
+
 ## Testing
 
 ```bash
