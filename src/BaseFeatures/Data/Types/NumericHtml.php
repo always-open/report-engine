@@ -14,6 +14,10 @@ class NumericHtml extends BaseNumber
      */
     public function format($value, ?object $result = null)
     {
+        if ($this->formatClosure) {
+            return ($this->formatClosure)($value);
+        }
+
         return (string) $value;
     }
 

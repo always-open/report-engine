@@ -165,6 +165,18 @@ class Column
         return $this->config['should_sum'] ?? false;
     }
 
+    public function setIncludeRaw(bool $includeRaw): self
+    {
+        $this->config['include_raw'] = $includeRaw;
+
+        return $this;
+    }
+
+    public function includeRaw() : bool
+    {
+        return $this->config['include_raw'] ?? false;
+    }
+
     /**
      * @return string
      */

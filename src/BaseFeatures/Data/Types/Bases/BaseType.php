@@ -15,6 +15,8 @@ abstract class BaseType
 
     protected string $placeholder = '';
 
+    protected ?\Closure $formatClosure = null;
+
     /**
      * @var null|string
      */
@@ -34,6 +36,13 @@ abstract class BaseType
      * @return array
      */
     abstract public static function availableFilters(): array;
+
+    public function setFormatFunction (?\Closure $formatClosure):self
+    {
+        $this->formatClosure = $formatClosure;
+
+        return $this;
+    }
 
     /**
      * @param mixed $value
