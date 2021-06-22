@@ -12,8 +12,12 @@ class NumericHtml extends BaseNumber
      *
      * @return string
      */
-    public function format($value, ?object $result = null)
+    public function typeFormat($value, ?object $result = null)
     {
+        if ($this->formatClosure) {
+            return ($this->formatClosure)($value);
+        }
+
         return (string) $value;
     }
 

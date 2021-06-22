@@ -91,6 +91,28 @@ class Column
         return $value;
     }
 
+    public function setValueFormatter(?\Closure $valueFormatter): self
+    {
+        $this->config['value_formatter'] = $valueFormatter;
+
+        return $this;
+    }
+
+    /**
+     * @param $result
+     *
+     * @return string|null
+     */
+    public function formattedValue($result)
+    {
+        $value = $this->value($result);
+        if (! empty($this->config['value_formatter'])) {
+            $value = $this->config['value_formatter']($result);
+        }
+
+        return $value;
+    }
+
     /**
      * @return BaseType
      */
@@ -151,6 +173,30 @@ class Column
         $this->config['hidden'] = $hidden;
 
         return $this;
+    }
+
+    public function setShouldSum(bool $shouldSum): self
+    {
+        $this->config['should_sum'] = $shouldSum;
+
+        return $this;
+    }
+
+    public function shouldSum() : bool
+    {
+        return $this->config['should_sum'] ?? false;
+    }
+
+    public function setIncludeRaw(bool $includeRaw): self
+    {
+        $this->config['include_raw'] = $includeRaw;
+
+        return $this;
+    }
+
+    public function includeRaw() : bool
+    {
+        return $this->config['include_raw'] ?? false;
     }
 
     /**

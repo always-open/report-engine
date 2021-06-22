@@ -55,12 +55,14 @@ class Dollar extends BaseType
     }
 
     /**
-     * @param string|float|int $value
-     * @param object|null      $result
+     * @param string|float|int|mixed $value
+     * @param object|null            $result
      *
      * @return string
+     *
+     * @throws \Brick\Money\Exception\UnknownCurrencyException
      */
-    public function format($value, ?object $result = null): string
+    public function typeFormat($value, ?object $result = null): string
     {
         return Money::of($value, $this->getCurrency($result), null, RoundingMode::HALF_DOWN)
             ->formatTo('us_en');

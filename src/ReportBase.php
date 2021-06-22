@@ -5,7 +5,6 @@ namespace BluefynInternational\ReportEngine;
 use BluefynInternational\ReportEngine\BaseFeatures\Data\Cell;
 use BluefynInternational\ReportEngine\BaseFeatures\Data\Column;
 use BluefynInternational\ReportEngine\BaseFeatures\Data\Row;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Bases\Number;
 use BluefynInternational\ReportEngine\BaseFeatures\ReportButton;
 use BluefynInternational\ReportEngine\BaseFeatures\Traits\ColumnsMappable;
 use BluefynInternational\ReportEngine\BaseFeatures\Traits\Filterable;
@@ -158,9 +157,9 @@ abstract class ReportBase implements Responsable, Arrayable
      *
      * @TODO Manage pagination
      *
-     * @return iterable
+     * @return Collection
      */
-    protected function runQuery(Builder $query, ?int $perPageLimit = null): iterable
+    protected function runQuery(Builder $query, ?int $perPageLimit = null): Collection
     {
         return $query->get();
     }
@@ -196,6 +195,9 @@ abstract class ReportBase implements Responsable, Arrayable
             foreach ($this->columns as $column) {
                 $cell = new Cell($column, $result);
                 $row->put($column->name(), $cell->getFormattedValue($result));
+                if ($column->includeRaw()) {
+                    $row->put($column->name() . '_raw_value', $cell->getRawValue());
+                }
             }
             $data->push($row);
         });
@@ -215,7 +217,7 @@ abstract class ReportBase implements Responsable, Arrayable
                 'formatter' => $column->formatter(),
             ];
 
-            if ($column->type() instanceof Number) {
+            if ($column->shouldSum()) {
                 $array['bottomCalc'] = 'sum';
             }
 
@@ -383,7 +385,8 @@ abstract class ReportBase implements Responsable, Arrayable
         /** @var Collection $response */
         $response = collect(DB::select("EXPLAIN " . $this->getSql()))->toJson(JSON_PRETTY_PRINT);
 
-        return response($response)
+        return response()
+            ->setContent($response)
             ->header('Content-Type', 'text/plain');
     }
 

@@ -6,16 +6,21 @@ use Illuminate\Support\Collection;
 
 abstract class BaseType
 {
+    /**
+     * @var mixed
+     */
     protected $default = null;
 
-    protected $styleClasses = '';
+    protected string $styleClasses = '';
 
-    protected $placeholder = '';
+    protected string $placeholder = '';
+
+    protected ?\Closure $formatClosure = null;
 
     /**
      * @var null|string
      */
-    protected $formatter = null;
+    protected ?string $formatter = null;
 
     /**
      * @param mixed       $value
@@ -23,7 +28,16 @@ abstract class BaseType
      *
      * @return mixed
      */
-    abstract public function format($value, ?object $result = null);
+    public function format($value, ?object $result = null)
+    {
+        if ($this->formatClosure) {
+            $value = ($this->formatClosure)($value);
+        }
+
+        return $this->typeFormat($value, $result);
+    }
+
+    abstract public function typeFormat($value, ?object $result = null);
 
     /**
      * Filters this data type can utilize.
@@ -31,6 +45,13 @@ abstract class BaseType
      * @return array
      */
     abstract public static function availableFilters(): array;
+
+    public function setFormatFunction(?\Closure $formatClosure):self
+    {
+        $this->formatClosure = $formatClosure;
+
+        return $this;
+    }
 
     /**
      * @param mixed $value
@@ -99,13 +120,13 @@ abstract class BaseType
     }
 
     /**
-     * @param string $label
-     * @param string $name
-     * @param array  $actionTypes
-     * @param self   $columnType
-     * @param mixed  $value
+     * @param string      $label
+     * @param string      $name
+     * @param array       $actionTypes
+     * @param self        $columnType
+     * @param Collection  $value
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function renderFilter(string $label, string $name, array $actionTypes, self $columnType, Collection $value)
     {
@@ -146,5 +167,10 @@ abstract class BaseType
     public function formatter() : string
     {
         return $this->formatter ?? 'plaintext';
+    }
+
+    public function getOptions() : array
+    {
+        return [];
     }
 }

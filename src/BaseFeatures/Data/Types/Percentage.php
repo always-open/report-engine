@@ -17,7 +17,7 @@ class Percentage extends BaseNumber
      *
      * @return string
      */
-    public function format($value, ?object $result = null)
+    public function typeFormat($value, ?object $result = null)
     {
         return $this->numberFormat($value, 1) . '%';
     }

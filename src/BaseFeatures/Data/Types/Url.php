@@ -14,7 +14,7 @@ class Url extends BaseType
      *
      * @return \Illuminate\Contracts\Routing\UrlGenerator|string
      */
-    public function format($value, ?object $result = null)
+    public function typeFormat($value, ?object $result = null)
     {
         return url($value);
     }

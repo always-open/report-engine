@@ -45,9 +45,9 @@ class DateTime extends BaseType
      *
      * @return string|null
      */
-    public function format($value, ?object $result = null) : ?string
+    public function typeFormat($value, ?object $result = null) : ?string
     {
-        return new Carbon($value); //->setTimezone($this->outputTzName)->format($this->date_time_format);
+        return (new Carbon($value))->toDateTimeString(); //->setTimezone($this->outputTzName)->format($this->date_time_format);
     }
 
     /**
@@ -82,16 +82,17 @@ class DateTime extends BaseType
     }
 
     /**
-     * @param string   $label
-     * @param string   $name
-     * @param array    $actionTypes
-     * @param BaseType $columnType
+     * @param string     $label
+     * @param string     $name
+     * @param array      $actionTypes
+     * @param BaseType   $columnType
+     * @param Collection $value
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
      */
     public function renderFilter(string $label, string $name, array $actionTypes, BaseType $columnType, Collection $value)
     {
-        $value = $value->map(function ($value, $filter) use ($name) {
+        $value = $value->map(function ($value) {
             return Carbon::parse($value)->isoFormat($this->date_time_format);
         });
 

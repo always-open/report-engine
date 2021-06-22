@@ -36,6 +36,6 @@ class ReportButton
 
     public function __toString() : string
     {
-        return \Html::link($this->link, $this->name, ['class' => 'btn btn-go'])->toHtml();
+        return app('html')->link($this->link, $this->name, ['class' => 'btn btn-go'])->toHtml();
     }
 }
