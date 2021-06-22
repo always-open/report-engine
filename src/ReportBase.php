@@ -215,7 +215,7 @@ abstract class ReportBase implements Responsable, Arrayable
                 'formatter' => $column->formatter(),
             ];
 
-            if ($column->type() instanceof Number) {
+            if ($column->shouldSum()) {
                 $array['bottomCalc'] = 'sum';
             }
 

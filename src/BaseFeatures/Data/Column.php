@@ -153,6 +153,18 @@ class Column
         return $this;
     }
 
+    public function setShouldSum(bool $shouldSum): self
+    {
+        $this->config['should_sum'] = $shouldSum;
+
+        return $this;
+    }
+
+    public function shouldSum() : bool
+    {
+        return $this->config['should_sum'] ?? false;
+    }
+
     /**
      * @return string
      */
