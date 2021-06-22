@@ -12,7 +12,7 @@ class Number extends BaseNumber
      *
      * @return string
      */
-    public function format($value, ?object $result = null) : string
+    public function typeFormat($value, ?object $result = null) : string
     {
         return $this->numberFormat($value);
     }

@@ -14,7 +14,7 @@ class YesNo extends BaseType
      *
      * @return string
      */
-    public function format($value, ?object $result = null)
+    public function typeFormat($value, ?object $result = null)
     {
         return $value ? 'Yes' : 'No';
     }

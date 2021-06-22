@@ -28,7 +28,16 @@ abstract class BaseType
      *
      * @return mixed
      */
-    abstract public function format($value, ?object $result = null);
+    public function format($value, ?object $result = null)
+    {
+        if ($this->formatClosure) {
+            $value = ($this->formatClosure)($value);
+        }
+
+        return $this->typeFormat($value, $result);
+    }
+
+    abstract public function typeFormat($value, ?object $result = null);
 
     /**
      * Filters this data type can utilize.

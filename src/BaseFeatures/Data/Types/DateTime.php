@@ -45,7 +45,7 @@ class DateTime extends BaseType
      *
      * @return string|null
      */
-    public function format($value, ?object $result = null) : ?string
+    public function typeFormat($value, ?object $result = null) : ?string
     {
         return (new Carbon($value))->toDateTimeString(); //->setTimezone($this->outputTzName)->format($this->date_time_format);
     }
