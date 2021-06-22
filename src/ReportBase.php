@@ -5,7 +5,6 @@ namespace BluefynInternational\ReportEngine;
 use BluefynInternational\ReportEngine\BaseFeatures\Data\Cell;
 use BluefynInternational\ReportEngine\BaseFeatures\Data\Column;
 use BluefynInternational\ReportEngine\BaseFeatures\Data\Row;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Bases\Number;
 use BluefynInternational\ReportEngine\BaseFeatures\ReportButton;
 use BluefynInternational\ReportEngine\BaseFeatures\Traits\ColumnsMappable;
 use BluefynInternational\ReportEngine\BaseFeatures\Traits\Filterable;

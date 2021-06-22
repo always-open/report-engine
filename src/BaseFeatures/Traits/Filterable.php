@@ -111,6 +111,7 @@ trait Filterable
                         if ($class) {
                             return new $class($column, $value);
                         }
+
                         return null;
                     });
                 });
