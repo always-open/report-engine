@@ -21,6 +21,7 @@ class Text extends BaseType
         if ($this->formatClosure) {
             return ($this->formatClosure)($value);
         }
+
         return (string) $value;
     }
 
