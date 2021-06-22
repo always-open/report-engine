@@ -91,6 +91,28 @@ class Column
         return $value;
     }
 
+    public function setValueFormatter(?\Closure $valueFormatter): self
+    {
+        $this->config['value_formatter'] = $valueFormatter;
+
+        return $this;
+    }
+
+    /**
+     * @param $result
+     *
+     * @return string|null
+     */
+    public function formattedValue($result)
+    {
+        $value = $this->value($result);
+        if (! empty($this->config['value_formatter'])) {
+            $value = $this->config['value_formatter']($result);
+        }
+
+        return $value;
+    }
+
     /**
      * @return BaseType
      */

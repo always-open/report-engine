@@ -197,7 +197,7 @@ abstract class ReportBase implements Responsable, Arrayable
                 $cell = new Cell($column, $result);
                 $row->put($column->name(), $cell->getFormattedValue($result));
                 if ($column->includeRaw()) {
-                    $row->put($column->name() . '_raw_value', $cell->getValue());
+                    $row->put($column->name() . '_raw_value', $cell->getRawValue());
                 }
             }
             $data->push($row);

@@ -149,4 +149,23 @@ class DataTypeTest extends TestCase
         $this->assertEquals('N', $type->format(false));
         $this->assertEquals('N', $type->format(0));
     }
+
+    /** @test */
+    public function customClosure()
+    {
+        $type = new Text();
+        $closure = function ($value) {
+            return strtoupper($value);
+        };
+        $type->setFormatFunction($closure);
+
+        $this->assertEquals('HELLO', $type->format('HeLlO'));
+
+        $closure = function ($value) {
+            return trim(strtolower($value));
+        };
+        $type->setFormatFunction($closure);
+
+        $this->assertEquals('testing', $type->format('   testINg  '));
+    }
 }

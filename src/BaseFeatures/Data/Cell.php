@@ -46,7 +46,8 @@ class Cell
     public function __construct(Column $column, object $result)
     {
         $this->setColumn($column);
-        $this->setValue($column->value($result));
+        $this->setValue($column->formattedValue($result));
+        $this->setRawValue($column->value($result));
         $this->setTooltip($column->generateLink($result, 'tooltip'));
         $this->setHref($column->generateLink($result));
         $this->setHrefTarget($column->hrefTarget());
@@ -88,6 +89,26 @@ class Cell
     public function setValue(?string $value): self
     {
         $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getRawValue(): ?string
+    {
+        return $this->raw_value;
+    }
+
+    /**
+     * @param string|null $raw_value
+     *
+     * @return Cell
+     */
+    public function setRawValue(?string $raw_value): self
+    {
+        $this->raw_value = $raw_value;
 
         return $this;
     }
