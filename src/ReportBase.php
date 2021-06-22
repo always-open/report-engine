@@ -208,7 +208,7 @@ abstract class ReportBase implements Responsable, Arrayable
     /**
      * @return Collection
      */
-    protected function generateTabulatorColumns() : Collection
+    public function generateTabulatorColumns() : Collection
     {
         return $this->buildColumns()->columns->map(function (Column $column) {
             $array = [
