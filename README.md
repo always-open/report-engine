@@ -147,6 +147,117 @@ This will return the output of the explain command for the query, useful for deb
 {{ base_url }}/users.explain
 ```
 
+## Filters
+Here are the possible filters for the default types. To build a filter follow this format:
+```javascript
+let filterParams = new URLSearchParams();
+let filterName = 'name'
+let action = 'equals'
+let value = 'bob'
+filterParams.append('filters['+filterName+']['+action+']', value)
+```
+
+### DateTime
+- does_not_equal
+- equals
+- greater_than
+- greater_than_or_equal
+- less_than
+- less_than_or_equal
+
+### Decimal
+- does_not_equal
+- equals
+- greater_than
+- greater_than_or_equal
+- less_than
+- less_than_or_equal
+
+### Dollar
+- does_not_equal
+- equals
+- greater_than
+- greater_than_or_equal
+- less_than
+- less_than_or_equal
+
+### Enum
+- equals
+
+### Html
+- contains
+- does_not_contain
+
+### Integer
+- does_not_equal
+- equals
+- greater_than
+- greater_than_or_equal
+- less_than
+- less_than_or_equal
+
+### NullableDecimal
+- does_not_equal
+- equals
+- greater_than
+- greater_than_or_equal
+- is_empty
+- is_not_empty
+- less_than
+- less_than_or_equal
+
+### NullableInteger
+- does_not_equal
+- equals
+- greater_than
+- greater_than_or_equal
+- is_empty
+- is_not_empty
+- less_than
+- less_than_or_equal
+
+### Number
+- does_not_equal
+- equals
+- greater_than
+- greater_than_or_equal
+- less_than
+- less_than_or_equal
+
+### NumericHtml
+- does_not_equal
+- equals
+- greater_than
+- greater_than_or_equal
+- less_than
+- less_than_or_equal
+
+### Percentage
+- does_not_equal
+- equals
+- greater_than
+- greater_than_or_equal
+- less_than
+- less_than_or_equal
+
+### Text
+- contains
+- does_not_contain
+- does_not_equal
+- equals
+
+### Url
+- contains
+- does_not_contain
+
+### YesNo
+- is_true
+- is_false
+
+### YesNoShort
+- is_true
+- is_false
+
 
 ## Testing
 
