@@ -17,7 +17,6 @@ class DoesNotEqualFilter extends BaseFilter
         $action = $this->getAction();
 
         if ($this->valueIsDate()) {
-
             return $builder->where(function (Builder $builder) use ($action) {
                 $builder->where($this->getField(), '>', $this->getValue()->endOfDay()->toDateTimeString())
                     ->orWhere($this->getField(), '<', $this->getValue()->startOfDay()->toDateTimeString());
