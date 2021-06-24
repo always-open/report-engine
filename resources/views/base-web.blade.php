@@ -64,6 +64,7 @@
             let m = $('#confirmationModal').modal('show')
 
             m.find('a.confirm').unbind('click').click(function () {
+                m.find('a.confirm').unbind('click')
                 let data = row.getData()
                 let route = routeTemplate
                 for(let index in routeReplacements) {
