@@ -351,6 +351,25 @@ abstract class ReportBase implements Responsable, Arrayable
         ];
     }
 
+    public function toConfig() : JsonResponse
+    {
+        return response()->json($this->getConfig());
+    }
+
+    public function getConfig() : array
+    {
+        return [
+            'title' => $this->title(),
+            'emptyMessage' => $this->emptyMessage(),
+            'columns' => $this->generateTabulatorColumns(),
+            'filterColumns' => $this->getFilterableColumns(),
+            'autoloadInitialData' => $this->autoloadInitialData,
+            'route' => route($this->getCurrentRequest()->route()->getName(), $this->getCurrentRequest()->route()->parameters()),
+            'rowContextActions' => $this->rowContextActions(),
+            'reportButtons' => $this->reportButtons(),
+        ];
+    }
+
     /**
      * @return JsonResponse
      */
@@ -421,16 +440,7 @@ abstract class ReportBase implements Responsable, Arrayable
      */
     public function toHtml() : Response
     {
-        return response()->view('report-engine::base-web', [
-            'title' => $this->title(),
-            'emptyMessage' => $this->emptyMessage(),
-            'columns' => $this->generateTabulatorColumns(),
-            'filterColumns' => $this->getFilterableColumns(),
-            'autoloadInitialData' => $this->autoloadInitialData,
-            'route' => route($this->getCurrentRequest()->route()->getName(), $this->getCurrentRequest()->route()->parameters()),
-            'rowContextActions' => $this->rowContextActions(),
-            'reportButtons' => $this->reportButtons(),
-        ]);
+        return response()->view('report-engine::base-web', $this->getConfig());
     }
 
     /**

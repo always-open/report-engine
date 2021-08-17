@@ -109,12 +109,12 @@ class Enum extends BaseType
     /**
      * @param string   $label
      * @param string   $name
-     * @param array    $actionTypes
+     * @param array    $action_types
      * @param BaseType $columnType
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function renderFilter(string $label, string $name, array $actionTypes, BaseType $columnType, Collection $value)
+    public function renderFilter(string $label, string $name, array $action_types, BaseType $columnType, Collection $value)
     {
         return view('report-engine::partials.enum-filter')->with([
             'label' => $label,

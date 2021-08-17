@@ -4,11 +4,12 @@ namespace BluefynInternational\ReportEngine\BaseFeatures\Filters;
 
 use BluefynInternational\ReportEngine\BaseFeatures\Data\Column;
 use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\DateTime;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Carbon;
 
-abstract class BaseFilter
+abstract class BaseFilter implements Arrayable
 {
     /**
      * @var Column
@@ -134,5 +135,14 @@ abstract class BaseFilter
     public function getAction() : string
     {
         return $this->getColumn()->action();
+    }
+
+    public function toArray() : array
+    {
+        return [
+            'value' => $this->getValue(),
+            'field' => $this->getField(),
+            'label' => $this->label(),
+        ];
     }
 }

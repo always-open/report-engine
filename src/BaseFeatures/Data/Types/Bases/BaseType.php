@@ -122,23 +122,31 @@ abstract class BaseType
     /**
      * @param string      $label
      * @param string      $name
-     * @param array       $actionTypes
+     * @param array       $action_types
      * @param self        $columnType
      * @param Collection  $value
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function renderFilter(string $label, string $name, array $actionTypes, self $columnType, Collection $value)
+    public function renderFilter(string $label, string $name, array $action_types, self $columnType, Collection $value)
     {
-        return view('report-engine::partials.base-filter')->with([
+        return view('report-engine::partials.base-filter')
+            ->with(
+                $this->getConfig($label, $name, $action_types, $columnType, $value)
+            );
+    }
+
+    public function getConfig(string $label, string $name, array $action_types, self $columnType, Collection $value) : array
+    {
+        return [
             'label' => $label,
             'field' => $name,
             'value' => $value,
-            'actionTypes' => $actionTypes,
-            'inputType' => $columnType->inputType(),
+            'action_types' => $action_types,
+            'input_type' => $columnType->inputType(),
             'classes' => $this->styleClass(),
             'placeholder' => $this->placeholder(),
-        ]);
+        ];
     }
 
     /**
