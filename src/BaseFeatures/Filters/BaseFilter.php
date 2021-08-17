@@ -143,7 +143,7 @@ abstract class BaseFilter implements Arrayable
             'value' => $this->getValue(),
             'field' => $this->getField(),
             'label' => $this->label(),
-            'key'   => $this->key(),
+            'key' => $this->key(),
         ];
     }
 }
