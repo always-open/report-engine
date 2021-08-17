@@ -98,7 +98,7 @@
         (() => {
             $('#filterContainer .custom-select').change()
 
-            var table = new Tabulator('#report-table', {
+            let table = new Tabulator('#report-table', {
                 columns:{!! json_encode($columns) !!},
                 height:"500px",
                 layout:"fitColumns",
