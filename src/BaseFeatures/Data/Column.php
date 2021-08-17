@@ -443,6 +443,7 @@ class Column implements Arrayable
     public function toArray() : array
     {
         $action_types = collect($this->filterInstances())->map->toArray();
+
         return [
             'title' => $this->label(),
             'field' => $this->name(),
