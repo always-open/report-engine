@@ -84,13 +84,13 @@ class DateTime extends BaseType
     /**
      * @param string     $label
      * @param string     $name
-     * @param array      $actionTypes
+     * @param array      $action_types
      * @param BaseType   $columnType
      * @param Collection $value
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
      */
-    public function renderFilter(string $label, string $name, array $actionTypes, BaseType $columnType, Collection $value)
+    public function renderFilter(string $label, string $name, array $action_types, BaseType $columnType, Collection $value)
     {
         $value = $value->map(function ($value) {
             return Carbon::parse($value)->isoFormat($this->date_time_format);
@@ -100,8 +100,8 @@ class DateTime extends BaseType
             'label' => $label,
             'field' => $name,
             'value' => $value,
-            'actionTypes' => $actionTypes,
-            'inputType' => $columnType->inputType(),
+            'action_types' => $action_types,
+            'input_type' => $columnType->inputType(),
             'classes' => $this->styleClass(),
             'placeholder' => $this->placeholder(),
         ]);

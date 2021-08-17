@@ -5,12 +5,13 @@ namespace BluefynInternational\ReportEngine\BaseFeatures\Data;
 use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Bases\BaseType;
 use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Enum;
 use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Text;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
-class Column
+class Column implements Arrayable
 {
     /**
      * @var string
@@ -441,9 +442,18 @@ class Column
      */
     public function toArray() : array
     {
+        $action_types = collect($this->filterInstances())->map->toArray();
         return [
             'title' => $this->label(),
             'field' => $this->name(),
+            'filter_type' => $this->type()
+                ->getConfig(
+                    $this->label(),
+                    $this->name(),
+                    $action_types->toArray(),
+                    $this->type(),
+                    $this->getFilterValue(),
+                ),
         ];
     }
 
