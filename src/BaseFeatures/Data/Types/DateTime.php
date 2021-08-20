@@ -104,6 +104,7 @@ class DateTime extends BaseType
             'input_type' => $columnType->inputType(),
             'classes' => $this->styleClass(),
             'placeholder' => $this->placeholder(),
+            'selected_operators' => $this->getSelectedOperators($value),
         ]);
     }
 }

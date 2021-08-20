@@ -5,7 +5,7 @@
     <div class="input-group mb-1">
         <select id="{{ $field }}_actions" class="custom-select" onchange="$('#{{ $field }}_filter_action').val($('#{{ $field }}_actions').find(':selected').attr('filterAction'))">
             @foreach($action_types as $actionType)
-                <option filterAction="{{ $actionType->key() }}" {{ $actionType->key() === $selected_operators[0] ? 'select' : '' }}>
+                <option filterAction="{{ $actionType->key() }}" {{ $actionType->key() === $selected_operators[0] ? 'selected' : '' }}>
                     {{ $actionType->label() }}
                 </option>
             @endforeach
@@ -21,7 +21,7 @@
     <div class="input-group mb-1">
         <select id="{{ $field }}_2_actions" class="custom-select" onchange="$('#{{ $field }}_filter_2_action').val($('#{{ $field }}_2_actions').find(':selected').attr('filterAction'))">
             @foreach($action_types as $actionType)
-                <option filterAction="{{ $actionType->key() }}" {{ $actionType->key() === $selected_operators[1] ? 'select' : '' }}>
+                <option filterAction="{{ $actionType->key() }}" {{ $actionType->key() === $selected_operators[1] ? 'selected' : '' }}>
                     {{ $actionType->label() }}
                 </option>
             @endforeach
