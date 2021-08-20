@@ -310,6 +310,18 @@ class Column implements Arrayable
         return $this;
     }
 
+    public function topCalcParams() : ?string
+    {
+        return Arr::get($this->config, 'top_calc_params');
+    }
+
+    public function setTopCalcParams(?string $topCalcParams): self
+    {
+        $this->config['top_calc_params'] = $topCalcParams;
+
+        return $this;
+    }
+
     public function bottomCalc() : ?string
     {
         return Arr::get($this->config, 'bottom_calc');
@@ -318,6 +330,18 @@ class Column implements Arrayable
     public function setBottomCalc(?string $bottomCalcFunction): self
     {
         $this->config['bottom_calc'] = $bottomCalcFunction;
+
+        return $this;
+    }
+
+    public function bottomCalcParams() : ?string
+    {
+        return Arr::get($this->config, 'bottom_calc_params');
+    }
+
+    public function setBottomCalcParams(?string $bottomCalcParams): self
+    {
+        $this->config['bottom_calc_params'] = $bottomCalcParams;
 
         return $this;
     }
