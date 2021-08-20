@@ -310,12 +310,20 @@ class Column implements Arrayable
         return $this;
     }
 
-    public function topCalcParams() : ?string
+    /**
+     * @return mixed
+     */
+    public function topCalcParams()
     {
         return Arr::get($this->config, 'top_calc_params');
     }
 
-    public function setTopCalcParams(?string $topCalcParams): self
+    /**
+     * @param mixed $topCalcParams
+     *
+     * @return $this
+     */
+    public function setTopCalcParams($topCalcParams): self
     {
         $this->config['top_calc_params'] = $topCalcParams;
 
@@ -334,12 +342,20 @@ class Column implements Arrayable
         return $this;
     }
 
-    public function bottomCalcParams() : ?string
+    /**
+     * @return mixed
+     */
+    public function bottomCalcParams()
     {
         return Arr::get($this->config, 'bottom_calc_params');
     }
 
-    public function setBottomCalcParams(?string $bottomCalcParams): self
+    /**
+     * @param mixed $bottomCalcParams
+     *
+     * @return $this
+     */
+    public function setBottomCalcParams($bottomCalcParams): self
     {
         $this->config['bottom_calc_params'] = $bottomCalcParams;
 
