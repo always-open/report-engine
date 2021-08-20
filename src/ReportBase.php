@@ -218,7 +218,10 @@ abstract class ReportBase implements Responsable, Arrayable
             ];
 
             if ($column->shouldSum()) {
-                $array['bottomCalc'] = 'sum';
+                $array['bottomCalc'] = $column->bottomCalc() ?? 'sum';
+                if ($column->topCalc()) {
+                    $array['topCalc'] = $column->topCalc();
+                }
             }
 
             if ($column->hidden()) {

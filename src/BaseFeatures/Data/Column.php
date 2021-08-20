@@ -298,6 +298,30 @@ class Column implements Arrayable
         return $this;
     }
 
+    public function topCalc() : ?string
+    {
+        return Arr::get($this->config, 'top_calc');
+    }
+
+    public function setTopCalc(?string $topCalcFunction): self
+    {
+        $this->config['top_calc'] = $topCalcFunction;
+
+        return $this;
+    }
+
+    public function bottomCalc() : ?string
+    {
+        return Arr::get($this->config, 'bottom_calc');
+    }
+
+    public function setBottomCalc(?string $bottomCalcFunction): self
+    {
+        $this->config['bottom_calc'] = $bottomCalcFunction;
+
+        return $this;
+    }
+
     /**
      * @return string|Expression
      */
