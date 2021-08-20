@@ -462,11 +462,14 @@ class Column implements Arrayable
     }
 
     /**
-     * @return string[]
+     * @return array
      */
     public function toArray() : array
     {
-        $action_types = collect($this->filterInstances())->map->toArray();
+        $action_types = collect($this->filterInstances())
+            ->map(function (Column $column) {
+                return $column->toArray();
+            });
 
         return [
             'title' => $this->label(),
