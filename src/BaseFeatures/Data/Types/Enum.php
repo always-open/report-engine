@@ -107,12 +107,13 @@ class Enum extends BaseType
     }
 
     /**
-     * @param string   $label
-     * @param string   $name
-     * @param array    $action_types
-     * @param BaseType $columnType
+     * @param string     $label
+     * @param string     $name
+     * @param array      $action_types
+     * @param BaseType   $columnType
+     * @param Collection $value
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function renderFilter(string $label, string $name, array $action_types, BaseType $columnType, Collection $value)
     {
