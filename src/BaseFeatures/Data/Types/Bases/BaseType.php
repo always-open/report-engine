@@ -2,6 +2,7 @@
 
 namespace BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Bases;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
 abstract class BaseType
@@ -9,7 +10,9 @@ abstract class BaseType
     /**
      * @var mixed
      */
-    protected $default = null;
+    protected $default_value = null;
+
+    protected array $default_comparison_operators = [];
 
     protected string $styleClasses = '';
 
@@ -17,9 +20,6 @@ abstract class BaseType
 
     protected ?\Closure $formatClosure = null;
 
-    /**
-     * @var null|string
-     */
     protected ?string $formatter = null;
 
     /**
@@ -84,36 +84,61 @@ abstract class BaseType
      */
     public function getDefaultValue()
     {
-        return $this->default;
+        return $this->default_value;
     }
 
     /**
-     * @return string
+     * @param mixed $default_value
+     *
+     * @return $this
      */
+    public function setDefaultValue($default_value) : self
+    {
+        $this->default_value = $default_value;
+
+        return $this;
+    }
+
+    public function getDefaultComparisonOperators() : array
+    {
+        return $this->default_comparison_operators;
+    }
+
+    /**
+     * @param string|array $operators
+     */
+    public function setDefaultComparisonOperators($operators) : self
+    {
+        $this->default_comparison_operators = Arr::wrap($operators);
+
+        return $this;
+    }
+
+    /**
+     * @param string|array $operators
+     */
+    public function addDefaultComparisonOperators($operators) : self
+    {
+        $this->default_comparison_operators += Arr::wrap($operators);
+
+        return $this;
+    }
+
     public function inputType() : string
     {
         return 'text';
     }
 
-    /**
-     * @param string $class
-     */
     public function addClass(string $class)
     {
         $this->styleClasses .= $class;
     }
 
-    /**
-     * @return string
-     */
     public function styleClass() : string
     {
         return $this->styleClasses;
     }
 
-    /**
-     * @return string
-     */
     public function placeholder() : string
     {
         return $this->placeholder;
@@ -146,22 +171,20 @@ abstract class BaseType
             'input_type' => $columnType->inputType(),
             'classes' => $this->styleClass(),
             'placeholder' => $this->placeholder(),
+            'selected_operators' => $this->getSelectedOperators($value),
         ];
     }
 
-    /**
-     * @return array
-     */
+    protected function getSelectedOperators(Collection $values) : array
+    {
+        return $values->keys()->all() + $this->getDefaultComparisonOperators();
+    }
+
     public function formatterParams() : array
     {
         return [];
     }
 
-    /**
-     * @param string|null $formatter
-     *
-     * @return $this
-     */
     public function setFormatter(?string $formatter) : self
     {
         $this->formatter = $formatter;
@@ -169,9 +192,6 @@ abstract class BaseType
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function formatter() : string
     {
         return $this->formatter ?? 'plaintext';

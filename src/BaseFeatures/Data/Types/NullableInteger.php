@@ -14,7 +14,7 @@ class NullableInteger extends NullableNumber
      */
     public function typeFormat($value, ?object $result = null)
     {
-        if (null === $value || $this->default_value === $value) {
+        if (null === $value || $this->getDefaultValue() === $value) {
             return '--';
         }
 

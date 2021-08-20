@@ -10,7 +10,7 @@ class Enum extends BaseType
 {
     protected $options;
     protected $prepend_all = true;
-    protected $default;
+    protected $default_value;
     protected $use_keys = false;
 
     /**
@@ -30,7 +30,7 @@ class Enum extends BaseType
             });
         }
 
-        $this->default = $default;
+        $this->default_value = $default;
 
         $this->options = collect($options);
     }

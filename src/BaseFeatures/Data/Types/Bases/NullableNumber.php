@@ -14,29 +14,6 @@ use BluefynInternational\ReportEngine\BaseFeatures\Filters\LessThanOrEqualFilter
 abstract class NullableNumber extends Number
 {
     /**
-     * @var string|null
-     */
-    protected ?string $default_value;
-
-    /**
-     * NullableDecimal constructor.
-     *
-     * @param string|null $default_value
-     */
-    public function __construct(?string $default_value)
-    {
-        $this->default_value = $default_value;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function defaultValue(): ?string
-    {
-        return $this->default_value;
-    }
-
-    /**
      * Filters this data type can utilize.
      *
      * @return array
