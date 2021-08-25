@@ -5,6 +5,7 @@ namespace BluefynInternational\ReportEngine\BaseFeatures\Data;
 use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Bases\BaseType;
 use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Enum;
 use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Text;
+use BluefynInternational\ReportEngine\BaseFeatures\Filters\BaseFilter;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Arr;
@@ -507,8 +508,11 @@ class Column implements Arrayable
     public function toArray() : array
     {
         $action_types = collect($this->filterInstances())
-            ->map(function (Column $column) {
-                return $column->toArray();
+            ->map(function (BaseFilter $filter) {
+                /**
+                 * @var BaseFilter $filter
+                 */
+                return $filter->toArray();
             });
 
         return [
