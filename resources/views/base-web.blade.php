@@ -61,6 +61,9 @@
             htmlToText:function(value, data, accessorParams){
                 let parsedElement = $.parseHTML(value)[0]
                 return parsedElement ? parsedElement.innerText : ''
+            },
+            nullStrings:function(value, data, accessorParams){
+                return value ?? ''
             }
         });
 
