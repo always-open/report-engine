@@ -343,6 +343,18 @@ class Column implements Arrayable
         return $this;
     }
 
+    public function downloadAccessorFunction() : ?string
+    {
+        return Arr::get($this->config, 'download_access_function');
+    }
+
+    public function setDownloadAccessorFunction(?string $downloadAccessFunction): self
+    {
+        $this->config['download_access_function'] = $downloadAccessFunction;
+
+        return $this;
+    }
+
     /**
      * @return mixed
      */

@@ -57,6 +57,13 @@
             }
         });
 
+        Tabulator.prototype.extendModule("accessor", "accessors", {
+            htmlToText:function(value, data, accessorParams){
+                let parsedElement = $.parseHTML(value)[0]
+                return parsedElement ? parsedElement.innerText : ''
+            }
+        });
+
         function popupConfirm(row, title, body, routeTemplate, routeReplacements, routeHttpAction)
         {
             $('#confirmationModal .modal-title').text(title)

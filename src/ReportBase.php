@@ -240,6 +240,10 @@ abstract class ReportBase implements Responsable, Arrayable
                 $array['formatterParams'] = $column->type()->formatterParams();
             }
 
+            if ($accessorDownloadFunction = $column->downloadAccessorFunction()) {
+                $array['accessorDownload'] = $accessorDownloadFunction;
+            }
+
             return $array;
         });
     }
