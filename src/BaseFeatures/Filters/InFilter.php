@@ -16,7 +16,7 @@ class InFilter extends BaseFilter
     {
         $options = collect(explode(',', $this->getValue()))->map(fn ($s) => trim($s));
 
-        return $builder->whereIn($this->getField(), $options);
+        return $builder->whereIn((string) $this->getField(), $options);
     }
 
     /**
