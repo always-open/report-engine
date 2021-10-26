@@ -14,7 +14,7 @@ class InFilter extends BaseFilter
      */
     public function apply(Builder $builder, array $options = []) : Builder
     {
-        $options = collect(explode(',', $this->getValue()))->map(fn($s) => trim($s));
+        $options = collect(explode(',', $this->getValue()))->map(fn ($s) => trim($s));
 
         return $builder->whereIn($this->getField(), $options);
     }
