@@ -13,6 +13,11 @@ use BluefynInternational\ReportEngine\BaseFeatures\Filters\LessThanOrEqualFilter
 
 abstract class NullableNumber extends Number
 {
+    public function __construct($default_value = null)
+    {
+        $this->default_value = $default_value;
+    }
+
     /**
      * Filters this data type can utilize.
      *
