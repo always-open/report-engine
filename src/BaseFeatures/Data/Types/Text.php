@@ -7,6 +7,7 @@ use BluefynInternational\ReportEngine\BaseFeatures\Filters\ContainsFilter;
 use BluefynInternational\ReportEngine\BaseFeatures\Filters\DoesNotContainFilter;
 use BluefynInternational\ReportEngine\BaseFeatures\Filters\DoesNotEqualFilter;
 use BluefynInternational\ReportEngine\BaseFeatures\Filters\EqualsFilter;
+use BluefynInternational\ReportEngine\BaseFeatures\Filters\InFilter;
 
 class Text extends BaseType
 {
@@ -37,6 +38,7 @@ class Text extends BaseType
             DoesNotContainFilter::class,
             EqualsFilter::class,
             DoesNotEqualFilter::class,
+            InFilter::class,
         ];
     }
 }

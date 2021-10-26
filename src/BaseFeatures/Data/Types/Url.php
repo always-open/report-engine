@@ -5,6 +5,7 @@ namespace BluefynInternational\ReportEngine\BaseFeatures\Data\Types;
 use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Bases\BaseType;
 use BluefynInternational\ReportEngine\BaseFeatures\Filters\ContainsFilter;
 use BluefynInternational\ReportEngine\BaseFeatures\Filters\DoesNotContainFilter;
+use BluefynInternational\ReportEngine\BaseFeatures\Filters\InFilter;
 
 class Url extends BaseType
 {
@@ -29,6 +30,7 @@ class Url extends BaseType
         return [
             ContainsFilter::class,
             DoesNotContainFilter::class,
+            InFilter::class,
         ];
     }
 }
