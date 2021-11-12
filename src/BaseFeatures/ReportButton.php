@@ -4,29 +4,19 @@ namespace BluefynInternational\ReportEngine\BaseFeatures;
 
 class ReportButton
 {
-    /**
-     * @var string
-     */
-    protected $name = '';
+    protected string $name = '';
 
-    /**
-     * @var string
-     */
-    protected $link = '';
+    protected ?string $link = null;
 
-    /**
-     * @param string $name
-     */
+    protected ?string $function = null;
+
+    protected ?string $cssClass = 'btn btn-go';
+
     public function __construct(string $name)
     {
         $this->name = $name;
     }
 
-    /**
-     * @param string $link
-     *
-     * @return ReportButton
-     */
     public function setLink(string $link): self
     {
         $this->link = $link;
@@ -34,8 +24,29 @@ class ReportButton
         return $this;
     }
 
+    public function setJsFunction(string $function) : self
+    {
+        $this->function = $function;
+
+        return $this;
+    }
+
+    public function setCssClass(string $cssClass) : self
+    {
+        $this->cssClass = $cssClass;
+
+        return $this;
+    }
+
     public function __toString() : string
     {
-        return app('html')->link($this->link, $this->name, ['class' => 'btn btn-go'])->toHtml();
+        return view('report-engine::partials.button')
+            ->with([
+                'href' => $this->link,
+                'function' => $this->function,
+                'class' => $this->cssClass,
+                'label' => $this->name,
+            ])
+            ->render();
     }
 }
