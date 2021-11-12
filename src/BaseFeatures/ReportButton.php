@@ -42,10 +42,10 @@ class ReportButton
     {
         return view('report-engine::partials.button')
             ->with([
-                'href'     => $this->link,
+                'href' => $this->link,
                 'function' => $this->function,
-                'class'    => $this->cssClass,
-                'label'    => $this->name,
+                'class' => $this->cssClass,
+                'label' => $this->name,
             ])
             ->render();
     }
