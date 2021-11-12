@@ -34,6 +34,16 @@ abstract class ReportBase implements Responsable, Arrayable
      */
     protected const SPECIAL_SEPARATOR = '∞|∞';
 
+    /**
+     * @var string
+     */
+    public const JSON_FORMAT = 'json';
+
+    /**
+     * @var string
+     */
+    public const HTML_FORMAT = 'html';
+
     protected Builder $query;
 
     protected Request $currentRequest;
@@ -400,6 +410,7 @@ abstract class ReportBase implements Responsable, Arrayable
 
     /**
      * @param Collection $filterColumns
+     * @param int        $columnsWide
      *
      * @throws Throwable
      *
