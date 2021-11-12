@@ -20,17 +20,14 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
+use Throwable;
 
 abstract class ReportBase implements Responsable, Arrayable
 {
     use ColumnsMappable;
     use Filterable;
-
-    /**
-     * @var Builder
-     */
-    protected $query;
 
     /**
      * @var string
@@ -47,46 +44,48 @@ abstract class ReportBase implements Responsable, Arrayable
      */
     public const HTML_FORMAT = 'html';
 
-    /**
-     * @var Request
-     */
-    protected $currentRequest;
+    public const LAYOUT_FIT_DATA = 'fitData';
+    public const LAYOUT_FIT_DATA_FILL = 'fitDataFill';
+    public const LAYOUT_FIT_DATA_STRETCH = 'fitDataStretch';
+    public const LAYOUT_FIT_DATA_TABLE = 'fitDataTable';
+    public const LAYOUT_FIT_COLUMNS = 'fitColumns';
+    public const LAYOUT_OPTIONS = [
+        self::LAYOUT_FIT_DATA,
+        self::LAYOUT_FIT_DATA_FILL,
+        self::LAYOUT_FIT_DATA_STRETCH,
+        self::LAYOUT_FIT_DATA_TABLE,
+        self::LAYOUT_FIT_COLUMNS,
+    ];
+
+    protected Builder $query;
+
+    protected Request $currentRequest;
+
+    protected Collection $results;
+
+    protected Collection $columns;
+
+    protected ?string $emptyMessage = null;
+
+    protected array $rowsArray = [];
+
+    protected array $reportButtons = [];
+
+    protected bool $autoloadInitialData = false;
 
     /**
-     * @var Collection
+     * Whether the rows should be selectable
      */
-    protected $results;
+    protected bool $selectable = false;
 
-    /**
-     * @var Collection
-     */
-    protected $columns;
+    protected bool $movableColumns = false;
 
-    /**
-     * @var ?string
-     */
-    protected $emptyMessage = null;
+    protected bool $tooltips = false;
 
-    /**
-     * @var array
-     */
-    protected $rowsArray = [];
+    protected bool $layoutColumnsOnNewData = false;
 
-    /**
-     * @var array
-     */
-    protected $reportButtons = [];
+    protected string $layout = self::LAYOUT_FIT_COLUMNS;
 
-    /**
-     * @var bool
-     */
-    protected $autoloadInitialData = false;
-
-    /**
-     * ReportBase constructor.
-     *
-     * @param Request $currentRequest
-     */
     public function __construct(Request $currentRequest)
     {
         ini_set('memory_limit', '3G');
@@ -104,44 +103,29 @@ abstract class ReportBase implements Responsable, Arrayable
 
     abstract public function availableColumns(): array;
 
-    /**
-     * @return string
-     */
     public function slug(): string
     {
         return Str::slug($this->title());
     }
 
-    /**
-     * @return string
-     */
     public function emptyMessage() : string
     {
         return $this->emptyMessage ?? 'No Data Found';
     }
 
-    /**
-     * @return Request
-     */
     public function getCurrentRequest() : Request
     {
         return $this->currentRequest;
     }
 
-    /**
-     * Build the report.
-     */
-    public function build(): void
+    public function build() : self
     {
-        $this->buildColumns()
+        return $this->buildColumns()
             ->initFeatures()
             ->fetchData()
             ->buildRows();
     }
 
-    /**
-     * @return $this
-     */
     public function fetchData() : self
     {
         $this->query = $this->getQueryWithFeaturesApplied();
@@ -164,9 +148,6 @@ abstract class ReportBase implements Responsable, Arrayable
         return $query->get();
     }
 
-    /**
-     * @return $this
-     */
     protected function buildRows() : self
     {
         $this->results->each(function (object $result) {
@@ -183,9 +164,6 @@ abstract class ReportBase implements Responsable, Arrayable
         return $this;
     }
 
-    /**
-     * @return Collection
-     */
     protected function generateTabulatorData() : Collection
     {
         $data = collect();
@@ -205,9 +183,6 @@ abstract class ReportBase implements Responsable, Arrayable
         return $data;
     }
 
-    /**
-     * @return Collection
-     */
     public function generateTabulatorColumns() : Collection
     {
         return $this->buildColumns()->columns->map(function (Column $column) {
@@ -248,9 +223,6 @@ abstract class ReportBase implements Responsable, Arrayable
         });
     }
 
-    /**
-     * @return Collection
-     */
     protected function getColumns() : Collection
     {
         if ($this->columns->isNotEmpty()) {
@@ -260,9 +232,6 @@ abstract class ReportBase implements Responsable, Arrayable
         return $this->buildColumns()->columns;
     }
 
-    /**
-     * @return Collection
-     */
     protected function getFilterableColumns() : Collection
     {
         $filteredBy = $this->getCurrentlyFilteredBy($this->getFilterParams());
@@ -278,9 +247,6 @@ abstract class ReportBase implements Responsable, Arrayable
             });
     }
 
-    /**
-     * @return string
-     */
     protected function getSql(): string
     {
         $query = $this->buildColumns()
@@ -290,9 +256,6 @@ abstract class ReportBase implements Responsable, Arrayable
         return Query::toString($query);
     }
 
-    /**
-     * @return $this
-     */
     protected function buildColumns() : self
     {
         foreach ($this->availableColumns() as $name => $config) {
@@ -301,7 +264,7 @@ abstract class ReportBase implements Responsable, Arrayable
             } elseif ($config instanceof Column) {
                 $column = $config;
             } else {
-                throw new \InvalidArgumentException('Column config must be an instance of array or ' . Column::class);
+                throw new InvalidArgumentException('Column config must be an instance of array or ' . Column::class);
             }
 
             $this->columns->push($column);
@@ -310,9 +273,6 @@ abstract class ReportBase implements Responsable, Arrayable
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     protected function initFeatures() : self
     {
         if (method_exists($this, 'initSorting')) {
@@ -322,9 +282,6 @@ abstract class ReportBase implements Responsable, Arrayable
         return $this;
     }
 
-    /**
-     * @return Builder
-     */
     protected function getQueryWithFeaturesApplied() : Builder
     {
         $query = $this->baseQuery();
@@ -379,15 +336,22 @@ abstract class ReportBase implements Responsable, Arrayable
             'columns' => $this->generateTabulatorColumns(),
             'filterColumns' => $this->getFilterableColumns(),
             'autoloadInitialData' => $this->autoloadInitialData,
-            'route' => route($this->getCurrentRequest()->route()->getName(), $this->getCurrentRequest()->route()->parameters()),
+            'route' => $this->getRoute(),
             'rowContextActions' => $this->rowContextActions(),
             'reportButtons' => $this->reportButtons(),
+            'selectable' => $this->selectable,
+            'movableColumns' => $this->movableColumns,
+            'tooltips' => $this->tooltips,
+            'layoutColumnsOnNewData' => $this->layoutColumnsOnNewData,
+            'layout' => $this->layout,
         ];
     }
 
-    /**
-     * @return JsonResponse
-     */
+    public function getRoute() : string
+    {
+        return route($this->getCurrentRequest()->route()->getName(), $this->getCurrentRequest()->route()->parameters());
+    }
+
     public function toJson(): JsonResponse
     {
         $data = $this->buildColumns()
@@ -401,7 +365,7 @@ abstract class ReportBase implements Responsable, Arrayable
     /**
      * Return the unbinded SQL Generated by the report via .sql endpoint.
      *
-     * @return Response
+     * @return Application|ResponseFactory|Response
      */
     public function toSql()
     {
@@ -442,43 +406,26 @@ abstract class ReportBase implements Responsable, Arrayable
         return $this->{$method}();
     }
 
-    /**
-     * @return JsonResponse
-     */
     public function toReport(): JsonResponse
     {
         return response()->json($this->toArray());
     }
 
-    /**
-     * @return Response
-     */
     public function toHtml() : Response
     {
         return response()->view('report-engine::base-web', $this->getConfig());
     }
 
-    /**
-     * @return null|array
-     */
     public function rowContextActions() : ?array
     {
         return null;
     }
 
-    /**
-     * @return array
-     */
     public function reportButtons(): array
     {
         return $this->reportButtons;
     }
 
-    /**
-     * @param ReportButton $button
-     *
-     * @return $this
-     */
     public function addReportButton(ReportButton $button) : self
     {
         $this->reportButtons[] = $button;
@@ -488,28 +435,29 @@ abstract class ReportBase implements Responsable, Arrayable
 
     /**
      * @param Collection $filterColumns
+     * @param int        $columnsWide
      *
-     * @throws \Throwable
+     * @throws Throwable
      *
      * @return string
      */
-    public static function rendersFilters(Collection $filterColumns) : string
+    public static function rendersFilters(Collection $filterColumns, int $columnsWide = 4) : string
     {
         $output = '';
 
-        $fullFilterRows = $filterColumns->count() % 4 === 0;
+        $fullFilterRows = $filterColumns->count() % $columnsWide === 0;
 
-        $filterColumns->chunk(4)->each(function (Collection $columns) use (&$output, $fullFilterRows) {
+        $filterColumns->chunk($columnsWide)->each(function (Collection $columns) use (&$output, $fullFilterRows, $columnsWide) {
             $output .= view('report-engine::partials.filters-row')->with([
                 'columns' => $columns,
-                'offset' => 3 - count($columns),
-                'includeSubmit' => ! $fullFilterRows && count($columns) < 4,
+                'offset' => ($columnsWide - 1) - count($columns),
+                'includeSubmit' => ! $fullFilterRows && count($columns) < $columnsWide,
             ])->render();
         });
 
         if (! empty($output) && $fullFilterRows) {
             $output .= view('report-engine::partials.filters-row')
-                ->with(['offset' => 3])
+                ->with(['offset' => $columnsWide - 1])
                 ->render();
         }
 
