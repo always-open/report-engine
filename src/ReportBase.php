@@ -418,13 +418,7 @@ abstract class ReportBase implements Responsable, Arrayable
 
     public function rowContextActionsForConfig() : array
     {
-        $return = [];
-
-        foreach ($this->rowContextActions() as $action) {
-            $return []= $action->toArray();
-        }
-
-        return $return;
+        return collect($this->rowContextActions())->toArray();
     }
 
     public function rowContextActions() : ?array

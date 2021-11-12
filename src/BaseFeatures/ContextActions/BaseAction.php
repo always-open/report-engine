@@ -2,7 +2,10 @@
 
 namespace BluefynInternational\ReportEngine\BaseFeatures\ContextActions;
 
-class BaseAction
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Collection;
+
+class BaseAction implements Arrayable
 {
     public const POST = 'post';
     public const GET = 'get';
