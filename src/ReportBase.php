@@ -421,7 +421,7 @@ abstract class ReportBase implements Responsable, Arrayable
         $return = [];
 
         foreach ($this->rowContextActions() as $action) {
-            $return []= $action->toArray();
+            $return [] = $action->toArray();
         }
 
         return $return;
