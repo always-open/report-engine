@@ -3,7 +3,6 @@
 namespace BluefynInternational\ReportEngine\BaseFeatures\ContextActions;
 
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Support\Collection;
 
 class BaseAction implements Arrayable
 {
