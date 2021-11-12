@@ -2,7 +2,9 @@
 
 namespace BluefynInternational\ReportEngine\BaseFeatures\ContextActions;
 
-class BaseAction
+use Illuminate\Contracts\Support\Arrayable;
+
+class BaseAction implements Arrayable
 {
     public const POST = 'post';
     public const GET = 'get';
@@ -150,5 +152,16 @@ class BaseAction
     public function getLabel(): string
     {
         return $this->label;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'http_action' => $this->getHttpAction(),
+            'label' => $this->getLabel(),
+            'link_template' => $this->getLinkTemplate(),
+            'link_template_replacements' => $this->getLinkTemplateReplacements(),
+            'message' => $this->getMessage(),
+        ];
     }
 }
