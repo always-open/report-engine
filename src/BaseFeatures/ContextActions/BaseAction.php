@@ -158,7 +158,7 @@ class BaseAction implements Arrayable
     public function toArray(): array
     {
         return [
-            'http_action'   => $this->getHttpAction(),
+            'http_action' => $this->getHttpAction(),
             'label' => $this->getLabel(),
             'link_template' => $this->getLinkTemplate(),
             'link_template_replacements' => $this->getLinkTemplateReplacements(),
