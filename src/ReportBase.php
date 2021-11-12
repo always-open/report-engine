@@ -44,6 +44,19 @@ abstract class ReportBase implements Responsable, Arrayable
      */
     public const HTML_FORMAT = 'html';
 
+    public const LAYOUT_FIT_DATA = 'fitData';
+    public const LAYOUT_FIT_DATA_FILL = 'fitDataFill';
+    public const LAYOUT_FIT_DATA_STRETCH = 'fitDataStretch';
+    public const LAYOUT_FIT_DATA_TABLE = 'fitDataTable';
+    public const LAYOUT_FIT_COLUMNS = 'fitColumns';
+    public const LAYOUT_OPTIONS = [
+        self::LAYOUT_FIT_DATA,
+        self::LAYOUT_FIT_DATA_FILL,
+        self::LAYOUT_FIT_DATA_STRETCH,
+        self::LAYOUT_FIT_DATA_TABLE,
+        self::LAYOUT_FIT_COLUMNS,
+    ];
+
     protected Builder $query;
 
     protected Request $currentRequest;
@@ -64,6 +77,14 @@ abstract class ReportBase implements Responsable, Arrayable
      * Whether the rows should be selectable
      */
     protected bool $selectable = false;
+
+    protected bool $movableColumns = false;
+
+    protected bool $tooltips = false;
+
+    protected bool $layoutColumnsOnNewData = false;
+
+    protected string $layout = self::LAYOUT_FIT_COLUMNS;
 
     public function __construct(Request $currentRequest)
     {
@@ -319,6 +340,10 @@ abstract class ReportBase implements Responsable, Arrayable
             'rowContextActions' => $this->rowContextActions(),
             'reportButtons' => $this->reportButtons(),
             'selectable' => $this->selectable,
+            'movableColumns' => $this->movableColumns,
+            'tooltips' => $this->tooltips,
+            'layoutColumnsOnNewData' => $this->layoutColumnsOnNewData,
+            'layout' => $this->layout,
         ];
     }
 
