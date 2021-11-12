@@ -337,7 +337,7 @@ abstract class ReportBase implements Responsable, Arrayable
             'filterColumns' => $this->getFilterableColumns(),
             'autoloadInitialData' => $this->autoloadInitialData,
             'route' => $this->getRoute(),
-            'rowContextActions' => $this->rowContextActions(),
+            'rowContextActions' => $this->rowContextActionsForConfig(),
             'reportButtons' => $this->reportButtons(),
             'selectable' => $this->selectable,
             'movableColumns' => $this->movableColumns,
@@ -414,6 +414,17 @@ abstract class ReportBase implements Responsable, Arrayable
     public function toHtml() : Response
     {
         return response()->view('report-engine::base-web', $this->getConfig());
+    }
+
+    public function rowContextActionsForConfig() : array
+    {
+        $return = [];
+
+        foreach ($this->rowContextActions() as $action) {
+            $return []= $action->toArray();
+        }
+
+        return $return;
     }
 
     public function rowContextActions() : ?array
