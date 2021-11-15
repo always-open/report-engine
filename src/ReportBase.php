@@ -338,7 +338,7 @@ abstract class ReportBase implements Responsable, Arrayable
             'autoloadInitialData' => $this->autoloadInitialData,
             'route' => $this->getRoute(),
             'rowContextActions' => $this->rowContextActionsForConfig(),
-            'reportButtons' => $this->reportButtons(),
+            'reportButtons' => collect($this->reportButtons())->toArray(),
             'selectable' => $this->selectable,
             'movableColumns' => $this->movableColumns,
             'tooltips' => $this->tooltips,

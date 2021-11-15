@@ -2,7 +2,9 @@
 
 namespace BluefynInternational\ReportEngine\BaseFeatures;
 
-class ReportButton
+use Illuminate\Contracts\Support\Arrayable;
+
+class ReportButton implements Arrayable
 {
     protected string $name = '';
 
@@ -48,5 +50,15 @@ class ReportButton
                 'label' => $this->name,
             ])
             ->render();
+    }
+
+    public function toArray()
+    {
+        return [
+            'href' => $this->link,
+            'function' => $this->function,
+            'class' => $this->cssClass,
+            'label' => $this->name,
+        ];
     }
 }
