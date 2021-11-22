@@ -52,4 +52,9 @@ class YesNo extends BaseType
             'useKey' => true,
         ]);
     }
+
+    public function inputType() : string
+    {
+        return 'select';
+    }
 }

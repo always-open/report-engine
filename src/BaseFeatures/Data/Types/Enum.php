@@ -125,4 +125,9 @@ class Enum extends BaseType
             'useKey' => $this->use_keys,
         ]);
     }
+
+    public function inputType() : string
+    {
+        return 'select';
+    }
 }

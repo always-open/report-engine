@@ -107,4 +107,9 @@ class DateTime extends BaseType
             'selected_operators' => $this->getSelectedOperators($value),
         ]);
     }
+
+    public function inputType() : string
+    {
+        return 'date';
+    }
 }
