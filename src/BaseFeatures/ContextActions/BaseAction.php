@@ -12,53 +12,26 @@ class BaseAction implements Arrayable
     public const PATCH = 'patch';
     public const PUT = 'put';
 
-    /**
-     * @var string
-     */
-    protected $label;
+    protected string $label;
 
-    /**
-     * @var string
-     */
-    protected $template;
+    protected string $template;
 
-    /**
-     * @var string
-     */
-    protected $action = '';
+    protected string $action = '';
 
-    /**
-     * @var string
-     */
-    protected $linkTemplate = '';
+    protected string $linkTemplate = '';
 
-    /**
-     * @var array
-     */
-    protected $linkTemplateReplacements = [];
+    protected array $linkTemplateReplacements = [];
 
-    /**
-     * @var string
-     */
-    protected $httpAction = 'POST';
+    protected string $httpAction = 'POST';
 
-    /**
-     * BaseAction constructor.
-     *
-     * @param string $label
-     * @param string $action
-     */
-    public function __construct(string $label, string $action)
+    protected ?string $functionName = null;
+
+    public function __construct(string $label, string $action = '')
     {
         $this->setAction($action)
             ->setLabel($label);
     }
 
-    /**
-     * @param string $action
-     *
-     * @return $this
-     */
     public function setHttpAction(string $action): self
     {
         $this->httpAction = $action;
@@ -66,19 +39,11 @@ class BaseAction implements Arrayable
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getHttpAction() : string
     {
         return $this->httpAction;
     }
 
-    /**
-     * @param string $link
-     *
-     * @return $this
-     */
     public function setLinkTemplate(string $link) : self
     {
         $this->linkTemplate = $link;
@@ -86,19 +51,11 @@ class BaseAction implements Arrayable
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getLinkTemplate() : string
     {
         return $this->linkTemplate;
     }
 
-    /**
-     * @param string $key
-     *
-     * @return $this
-     */
     public function addLinkTemplateReplacement(string $key) : self
     {
         $this->linkTemplateReplacements[] = $key;
@@ -106,19 +63,11 @@ class BaseAction implements Arrayable
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function getLinkTemplateReplacements() : array
     {
         return $this->linkTemplateReplacements;
     }
 
-    /**
-     * @param string $action
-     *
-     * @return $this
-     */
     public function setAction(string $action) : self
     {
         $this->action = $action;
@@ -126,19 +75,11 @@ class BaseAction implements Arrayable
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getMessage() : string
     {
         return "Are you sure your want to {$this->action} this record?";
     }
 
-    /**
-     * @param string $label
-     *
-     * @return $this
-     */
     public function setLabel(string $label) : self
     {
         $this->label = $label;
@@ -146,12 +87,21 @@ class BaseAction implements Arrayable
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getLabel(): string
     {
         return $this->label;
+    }
+
+    public function setFunction(?string $functionName) : self
+    {
+        $this->functionName = $functionName;
+
+        return $this;
+    }
+
+    public function getFunction() : ?string
+    {
+        return $this->functionName;
     }
 
     public function toArray(): array
@@ -162,6 +112,7 @@ class BaseAction implements Arrayable
             'link_template' => $this->getLinkTemplate(),
             'link_template_replacements' => $this->getLinkTemplateReplacements(),
             'message' => $this->getMessage(),
+            'function' => $this->getFunction(),
         ];
     }
 }
