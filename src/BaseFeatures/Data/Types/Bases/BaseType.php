@@ -172,6 +172,8 @@ abstract class BaseType
             'classes' => $this->styleClass(),
             'placeholder' => $this->placeholder(),
             'selected_operators' => $this->getSelectedOperators($value),
+            'options' => $this->getOptions(),
+            'use_keys' => $this->use_keys ?? false,
         ];
     }
 
