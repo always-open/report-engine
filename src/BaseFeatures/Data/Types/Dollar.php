@@ -84,4 +84,9 @@ class Dollar extends BaseType
             LessThanOrEqualFilter::class,
         ];
     }
+
+    public function inputType() : string
+    {
+        return 'number';
+    }
 }
