@@ -47,7 +47,7 @@ class YesNo extends BaseType
         return view('report-engine::partials.yes-no-filter')->with([
             'label' => $label,
             'field' => $name,
-            'options' => collect(['1' => 'Yes', '0' => 'No']),
+            'options' => collect($this->getOptions()),
             'value' => $value,
             'useKey' => true,
         ]);
@@ -56,5 +56,13 @@ class YesNo extends BaseType
     public function inputType() : string
     {
         return 'select';
+    }
+
+    public function getOptions() : array
+    {
+        return [
+            '1' => 'Yes',
+            '0' => 'No',
+        ];
     }
 }
