@@ -127,7 +127,7 @@
                                 '{{ $rowContextAction['message'] }}',
                                 '{{ $rowContextAction['link_template'] }}',
                                 {!! json_encode($rowContextAction['link_template_replacements']) !!},
-                                '{{ $rowContextAction['link_template_replacements'] }}',
+                                '{{ $rowContextAction['http_action'] }}',
                             )
                         }
                     },
