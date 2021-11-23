@@ -119,15 +119,15 @@
                 ,rowContextMenu:[
                     @foreach($rowContextActions as $rowContextAction)
                     {
-                        label: '{{ $rowContextAction->getLabel() }}',
+                        label: '{{ $rowContextAction['label'] }}',
                         action: function(e, row){
                             popupConfirm(
                                 row,
-                                '{{ $rowContextAction->getLabel() }}',
-                                '{{ $rowContextAction->getMessage() }}',
-                                '{{ $rowContextAction->getLinkTemplate() }}',
-                                {!! json_encode($rowContextAction->getLinkTemplateReplacements()) !!},
-                                '{{ $rowContextAction->getHttpAction() }}',
+                                '{{ $rowContextAction['label'] }}',
+                                '{{ $rowContextAction['message'] }}',
+                                '{{ $rowContextAction['link_template'] }}',
+                                {!! json_encode($rowContextAction['link_template_replacements']) !!},
+                                '{{ $rowContextAction['link_template_replacements'] }}',
                             )
                         }
                     },
