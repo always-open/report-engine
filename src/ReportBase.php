@@ -325,11 +325,17 @@ abstract class ReportBase implements Responsable, Arrayable
 
     public function toConfig() : JsonResponse
     {
-        return response()->json($this->getConfig());
+        return response()->json($this->getConfig(true));
     }
 
-    public function getConfig() : array
+    public function getConfig(bool $asArray = false) : array
     {
+        $reportButtons = $this->reportButtons();
+
+        if ($asArray) {
+            $reportButtons = collect($reportButtons)->toArray();
+        }
+
         return [
             'title' => $this->title(),
             'emptyMessage' => $this->emptyMessage(),
@@ -337,8 +343,8 @@ abstract class ReportBase implements Responsable, Arrayable
             'filterColumns' => $this->getFilterableColumns(),
             'autoloadInitialData' => $this->autoloadInitialData,
             'route' => $this->getRoute(),
-            'rowContextActions' => $this->rowContextActionsForConfig(),
-            'reportButtons' => collect($this->reportButtons())->toArray(),
+            'rowContextActions' => $this->rowContextActionsForConfig($asArray),
+            'reportButtons' => $reportButtons,
             'selectable' => $this->selectable,
             'movableColumns' => $this->movableColumns,
             'tooltips' => $this->tooltips,
@@ -416,9 +422,13 @@ abstract class ReportBase implements Responsable, Arrayable
         return response()->view('report-engine::base-web', $this->getConfig());
     }
 
-    public function rowContextActionsForConfig() : array
+    public function rowContextActionsForConfig(bool $asArray = false) : ?array
     {
-        return collect($this->rowContextActions())->toArray();
+        if ($asArray) {
+            return collect($this->rowContextActions())->toArray();
+        }
+
+        return $this->rowContextActions();
     }
 
     public function rowContextActions() : ?array
