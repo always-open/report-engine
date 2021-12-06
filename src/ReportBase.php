@@ -209,7 +209,7 @@ abstract class ReportBase implements Responsable, Arrayable
 
             foreach ($column->optionalConfigFields() as $config_name => $function_name) {
                 $value = null;
-                foreach (explode('.', $function_name) AS $function) {
+                foreach (explode('.', $function_name) as $function) {
                     $value = ($value ?? $column)->{$function}();
                 }
 

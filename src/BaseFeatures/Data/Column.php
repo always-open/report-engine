@@ -582,14 +582,14 @@ class Column implements Arrayable
     public function optionalConfigFields() : array
     {
         return [
-            'minWidth'         => 'minWidth',
-            'maxWidth'         => 'maxWidth',
-            'width'            => 'width',
-            'widthGrow'        => 'widthGrow',
-            'widthShrink'      => 'widthShrink',
+            'minWidth' => 'minWidth',
+            'maxWidth' => 'maxWidth',
+            'width' => 'width',
+            'widthGrow' => 'widthGrow',
+            'widthShrink' => 'widthShrink',
             'accessorDownload' => 'downloadAccessorFunction',
-            'formatterParams'  => 'type.formatterParams',
-            'headerVertical'   => 'headerVertical',
+            'formatterParams' => 'type.formatterParams',
+            'headerVertical' => 'headerVertical',
         ];
     }
 }
