@@ -211,6 +211,10 @@ abstract class ReportBase implements Responsable, Arrayable
                 $array['visible'] = false;
             }
 
+            if ($column->getMinWidth()) {
+                $array['minWidth'] = $column->getMinWidth();
+            }
+
             if ($column->type()->formatterParams()) {
                 $array['formatterParams'] = $column->type()->formatterParams();
             }

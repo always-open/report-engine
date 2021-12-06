@@ -158,6 +158,26 @@ class Column implements Arrayable
     }
 
     /**
+     * @return string
+     */
+    public function getMinWidth() : ?string
+    {
+        return $this->config['minWidth'] ?? null;
+    }
+
+    /**
+     * @param string $minWidth
+     *
+     * @return $this
+     */
+    public function minWidth(string $minWidth): self
+    {
+        $this->config['minWidth'] = $minWidth;
+
+        return $this;
+    }
+
+    /**
      * @return bool
      */
     public function hidden() : bool
