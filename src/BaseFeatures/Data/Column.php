@@ -222,7 +222,7 @@ class Column implements Arrayable
         return $this->config['headerVertical'] ?? null;
     }
 
-    public function setWidthShrink(?bool $headerVertical): self
+    public function setHeaderVertical(?bool $headerVertical): self
     {
         $this->config['headerVertical'] = $headerVertical;
 
