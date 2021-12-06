@@ -207,16 +207,19 @@ abstract class ReportBase implements Responsable, Arrayable
                 }
             }
 
+            foreach ($column->optionalConfigFields() as $config_name => $function_name) {
+                $value = null;
+                foreach (explode('.', $function_name) as $function) {
+                    $value = ($value ?? $column)->{$function}();
+                }
+
+                if ($value) {
+                    $array[$config_name] = $value;
+                }
+            }
+
             if ($column->hidden()) {
                 $array['visible'] = false;
-            }
-
-            if ($column->type()->formatterParams()) {
-                $array['formatterParams'] = $column->type()->formatterParams();
-            }
-
-            if ($accessorDownloadFunction = $column->downloadAccessorFunction()) {
-                $array['accessorDownload'] = $accessorDownloadFunction;
             }
 
             return $array;

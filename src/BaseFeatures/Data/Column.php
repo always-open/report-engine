@@ -157,19 +157,83 @@ class Column implements Arrayable
         $this->name = $name;
     }
 
-    /**
-     * @return bool
-     */
+    public function width() : ?string
+    {
+        return $this->config['width'] ?? null;
+    }
+
+    public function setWidth(?string $width): self
+    {
+        $this->config['width'] = $width;
+
+        return $this;
+    }
+
+    public function minWidth() : ?string
+    {
+        return $this->config['minWidth'] ?? null;
+    }
+
+    public function setMinWidth(?string $minWidth): self
+    {
+        $this->config['minWidth'] = $minWidth;
+
+        return $this;
+    }
+
+    public function maxWidth() : ?string
+    {
+        return $this->config['maxWidth'] ?? null;
+    }
+
+    public function setMaxWidth(?string $maxWidth): self
+    {
+        $this->config['maxWidth'] = $maxWidth;
+
+        return $this;
+    }
+
+    public function widthGrow() : ?string
+    {
+        return $this->config['widthGrow'] ?? null;
+    }
+
+    public function setWidthGrow(?string $widthGrow): self
+    {
+        $this->config['widthGrow'] = $widthGrow;
+
+        return $this;
+    }
+
+    public function widthShrink() : ?string
+    {
+        return $this->config['widthShrink'] ?? null;
+    }
+
+    public function setWidthShrink(?string $widthShrink): self
+    {
+        $this->config['widthShrink'] = $widthShrink;
+
+        return $this;
+    }
+
+    public function headerVertical() : ?bool
+    {
+        return $this->config['headerVertical'] ?? null;
+    }
+
+    public function setHeaderVertical(?bool $headerVertical): self
+    {
+        $this->config['headerVertical'] = $headerVertical;
+
+        return $this;
+    }
+
     public function hidden() : bool
     {
         return $this->config['hidden'] ?? false;
     }
 
-    /**
-     * @param bool $hidden
-     *
-     * @return $this
-     */
     public function setHidden(bool $hidden): self
     {
         $this->config['hidden'] = $hidden;
@@ -201,19 +265,11 @@ class Column implements Arrayable
         return $this->config['include_raw'] ?? false;
     }
 
-    /**
-     * @return string
-     */
     public function action() : string
     {
         return $this->config['action'] ?? self::ACTION_WHERE;
     }
 
-    /**
-     * @param string $action
-     *
-     * @return $this
-     */
     public function setAction(string $action): self
     {
         $this->config['action'] = $action;
@@ -221,11 +277,6 @@ class Column implements Arrayable
         return $this;
     }
 
-    /**
-     * @param string $label
-     *
-     * @return $this
-     */
     public function setLabel(string $label): self
     {
         $this->config['label'] = $label;
@@ -233,17 +284,11 @@ class Column implements Arrayable
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function label(): string
     {
         return $this->config['label'] ?? $this->name();
     }
 
-    /**
-     * @return string
-     */
     public function tooltip(): string
     {
         $output = data_get($this->config, 'tooltip');
@@ -251,19 +296,11 @@ class Column implements Arrayable
         return is_string($output) ? $output : $this->label();
     }
 
-    /**
-     * @return bool
-     */
     public function truncatable(): bool
     {
         return (bool) data_get($this->config, 'truncatable', true);
     }
 
-    /**
-     * @param bool $sortable
-     *
-     * @return $this
-     */
     public function setSortable(bool $sortable): self
     {
         $this->config['sortable'] = $sortable;
@@ -271,9 +308,6 @@ class Column implements Arrayable
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function sortable(): bool
     {
         return (bool) Arr::get($this->config, 'sortable', true);
@@ -389,19 +423,11 @@ class Column implements Arrayable
         return (string) $alias_or_name;
     }
 
-    /**
-     * @return null|string
-     */
     public function aliasSort(): ?string
     {
         return Arr::get($this->config, 'alias_sort');
     }
 
-    /**
-     * @param string $column
-     *
-     * @return \BluefynInternational\ReportEngine\BaseFeatures\Data\Column
-     */
     public function setAliasSort(string $column): self
     {
         $this->config['alias_sort'] = $column;
@@ -417,9 +443,6 @@ class Column implements Arrayable
         return $this->aliasSort() ?? $this->name();
     }
 
-    /**
-     * @param string $key
-     */
     public function forgetConfig(string $key): void
     {
         Arr::forget($this->config, $key);
@@ -466,9 +489,6 @@ class Column implements Arrayable
         return $this->type()::availableFilters();
     }
 
-    /**
-     * @return array
-     */
     public function filterInstances() : array
     {
         $filterInstances = [];
@@ -482,11 +502,6 @@ class Column implements Arrayable
         return $filterInstances;
     }
 
-    /**
-     * @param bool $value
-     *
-     * @return \BluefynInternational\ReportEngine\BaseFeatures\Data\Column
-     */
     public function setIsFilterable(bool $value): self
     {
         $this->config['filterable'] = $value;
@@ -494,17 +509,11 @@ class Column implements Arrayable
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isFilterable(): bool
     {
         return (bool) Arr::get($this->config, 'filterable', false);
     }
 
-    /**
-     * @return array|null
-     */
     public function options(): ?array
     {
         if ($this->type() instanceof Enum) {
@@ -514,9 +523,6 @@ class Column implements Arrayable
         return null;
     }
 
-    /**
-     * @return array
-     */
     public function toArray() : array
     {
         $action_types = collect($this->filterInstances())
@@ -560,11 +566,30 @@ class Column implements Arrayable
             ->renderFilter($this->label(), $this->name(), $this->filterInstances(), $this->type(), $this->getFilterValue());
     }
 
-    /**
-     * @return string
-     */
     public function formatter() : string
     {
         return $this->type()->formatter();
+    }
+
+    /**
+     * @return string[]
+     *
+     * @note The array format is the config name as the index and the function name as the value. This will dynamically
+     *       call the function and if a truthy value is returned that value will be set in the output array at the
+     *       config name index. This also supports dot notion for sub-function calls. Example:
+     *       type.formatterParams would become $column->type()->formatterParams()
+     */
+    public function optionalConfigFields() : array
+    {
+        return [
+            'minWidth' => 'minWidth',
+            'maxWidth' => 'maxWidth',
+            'width' => 'width',
+            'widthGrow' => 'widthGrow',
+            'widthShrink' => 'widthShrink',
+            'accessorDownload' => 'downloadAccessorFunction',
+            'formatterParams' => 'type.formatterParams',
+            'headerVertical' => 'headerVertical',
+        ];
     }
 }
