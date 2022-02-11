@@ -129,6 +129,13 @@ abstract class BaseType
         return 'text';
     }
 
+    public function clearClasses() : self
+    {
+        $this->styleClasses = '';
+
+        return $this;
+    }
+
     public function addClass(string $class)
     {
         $this->styleClasses .= $class;
