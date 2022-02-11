@@ -13,7 +13,7 @@ services:
     networks:
       - report-engine
   db:
-    image: mysql:8.0.20
+    image: mysql/mysql-server:8.0.27
     container_name: report-engine-db
     restart: unless-stopped
     environment:
