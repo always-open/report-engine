@@ -17,37 +17,87 @@ class DateTime extends BaseType
     /**
      * @var null|string like "America/New_York".
      */
-    protected $outputTzName = null;
+    protected ?string $outputTzName = null;
 
-    /**
-     * @var string
-     */
-    protected $date_time_format = 'L';
+    protected ?string $inputFormat = 'YYYY-MM-DD HH:ii:ss';
 
-    /**
-     * DateTime constructor.
-     *
-     * @param string|null $output_tz_name
-     * @param string|null $placeholder
-     * @param string|null $date_time_format
-     */
-    public function __construct(?string $date_time_format = null, ?string $placeholder = null, ?string $output_tz_name = null)
-    {
-        $this->outputTzName = $output_tz_name;
-        $this->date_time_format = $date_time_format ?? $this->date_time_format;
+    protected string $outputFormat = 'L';
+
+    public function __construct(
+        ?string $outputFormat = null,
+        ?string $placeholder = null,
+        ?string $outputTimezone = null
+    ) {
+        $this->setOutputFormat($outputFormat ?? $this->outputFormat)
+            ->setOutputTimezone($outputTimezone)
+            ->setPlaceholder($placeholder ?? $this->placeholder);
         $this->addClass('datepicker');
-        $this->placeholder = $placeholder ?? $this->placeholder;
+    }
+
+    public function setOutputFormat(?string $format) : self
+    {
+        $this->outputFormat = $format;
+
+        return $this;
+    }
+
+    public function setPlaceholder(string $placeholder) : self
+    {
+        $this->placeholder = $placeholder;
+
+        return $this;
+    }
+
+    public function setInputFormat(?string $format) : self
+    {
+        $this->inputFormat = $format;
+
+        return $this;
+    }
+
+    public function setOutputTimezone(?string $timezone) : self
+    {
+        $this->outputTzName = $timezone;
+
+        return $this;
+    }
+
+    public function formatter(): string
+    {
+        return 'datetime';
+    }
+
+    public function formatterParams(): array
+    {
+        $params = [
+            'outputFormat' => $this->outputFormat,
+        ];
+
+        if ($this->inputFormat) {
+            $params['inputFormat'] = $this->inputFormat;
+        }
+
+        if ($this->outputTzName) {
+            $params['timezone'] = $this->outputTzName;
+        }
+
+        return $params;
+    }
+
+    public function inputType() : string
+    {
+        return 'date';
     }
 
     /**
      * @param mixed       $value
      * @param object|null $result
      *
-     * @return string|null
+     * @return ?string
      */
     public function typeFormat($value, ?object $result = null) : ?string
     {
-        return (new Carbon($value))->toDateTimeString(); //->setTimezone($this->outputTzName)->format($this->date_time_format);
+        return (new Carbon($value))->toDateTimeString(); //->setTimezone($this->outputTzName)->format($this->outputFormat);
     }
 
     /**
@@ -67,20 +117,6 @@ class DateTime extends BaseType
         ];
     }
 
-    public function formatter(): string
-    {
-        return 'datetime';
-    }
-
-    public function formatterParams(): array
-    {
-        return [
-            'inputFormat' => 'YYYY-MM-DD HH:ii:ss',
-            'outputFormat' => $this->date_time_format,
-            'timezone' => $this->outputTzName ?? 'America/New_York',
-        ];
-    }
-
     /**
      * @param string     $label
      * @param string     $name
@@ -93,7 +129,7 @@ class DateTime extends BaseType
     public function renderFilter(string $label, string $name, array $action_types, BaseType $columnType, Collection $value)
     {
         $value = $value->map(function ($value) {
-            return Carbon::parse($value)->isoFormat($this->date_time_format);
+            return Carbon::parse($value)->isoFormat($this->outputFormat);
         });
 
         return view('report-engine::partials.date-filter')->with([
@@ -106,10 +142,5 @@ class DateTime extends BaseType
             'placeholder' => $this->placeholder(),
             'selected_operators' => $this->getSelectedOperators($value),
         ]);
-    }
-
-    public function inputType() : string
-    {
-        return 'date';
     }
 }
