@@ -14,26 +14,26 @@ class EqualsFilter extends BaseFilter
      *
      * @return Builder
      */
-   public function apply(Builder $builder, array $options = []) : Builder
-   {
-       if ($this->valueIsDate()) {
-           $value = Carbon::parse($this->getValue());
+    public function apply(Builder $builder, array $options = []) : Builder
+    {
+        if ($this->valueIsDate()) {
+            $value = Carbon::parse($this->getValue());
 
-           if ($timeZoneString = Arr::get($options, 'timezone')) {
-               $value->shiftTimezone($timeZoneString);
-           }
+            if ($timeZoneString = Arr::get($options, 'timezone')) {
+                $value->shiftTimezone($timeZoneString);
+            }
 
-           $greaterThanEqual = new GreaterThanOrEqualFilter($this->getColumn(), $value);
-           $lessThanEqual = new LessThanOrEqualFilter($this->getColumn(), $value);
-           $builder = $greaterThanEqual->apply($builder);
+            $greaterThanEqual = new GreaterThanOrEqualFilter($this->getColumn(), $value);
+            $lessThanEqual = new LessThanOrEqualFilter($this->getColumn(), $value);
+            $builder = $greaterThanEqual->apply($builder);
 
-           return $lessThanEqual->apply($builder);
-       }
+            return $lessThanEqual->apply($builder);
+        }
 
-       $action = $this->getAction();
+        $action = $this->getAction();
 
-       return $builder->$action($this->getField(), $this->getValue());
-   }
+        return $builder->$action($this->getField(), $this->getValue());
+    }
 
     /**
      * @return string
