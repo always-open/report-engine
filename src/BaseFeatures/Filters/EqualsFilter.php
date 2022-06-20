@@ -3,6 +3,8 @@
 namespace BluefynInternational\ReportEngine\BaseFeatures\Filters;
 
 use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
 
 class EqualsFilter extends BaseFilter
 {
@@ -12,20 +14,26 @@ class EqualsFilter extends BaseFilter
      *
      * @return Builder
      */
-    public function apply(Builder $builder, array $options = []) : Builder
-    {
-        if ($this->valueIsDate()) {
-            $greaterThanEqual = new GreaterThanOrEqualFilter($this->getColumn(), $this->getValue());
-            $lessThanEqual = new LessThanOrEqualFilter($this->getColumn(), $this->getValue());
-            $builder = $greaterThanEqual->apply($builder);
+   public function apply(Builder $builder, array $options = []) : Builder
+   {
+       if ($this->valueIsDate()) {
+           $value = Carbon::parse($this->getValue());
 
-            return $lessThanEqual->apply($builder);
-        }
+           if ($timeZoneString = Arr::get($options, 'timezone')) {
+               $value->shiftTimezone($timeZoneString);
+           }
 
-        $action = $this->getAction();
+           $greaterThanEqual = new GreaterThanOrEqualFilter($this->getColumn(), $value);
+           $lessThanEqual = new LessThanOrEqualFilter($this->getColumn(), $value);
+           $builder = $greaterThanEqual->apply($builder);
 
-        return $builder->$action($this->getField(), $this->getValue());
-    }
+           return $lessThanEqual->apply($builder);
+       }
+
+       $action = $this->getAction();
+
+       return $builder->$action($this->getField(), $this->getValue());
+   }
 
     /**
      * @return string

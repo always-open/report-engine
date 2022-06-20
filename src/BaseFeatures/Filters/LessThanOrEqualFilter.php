@@ -25,7 +25,7 @@ class LessThanOrEqualFilter extends BaseFilter
     public function getValue()
     {
         if ($this->valueIsDate()) {
-            return parent::getValue()->endOfDay()->toDateTimeString();
+            return parent::getValue()->addDay()->toDateTimeString();
         }
 
         return parent::getValue();
