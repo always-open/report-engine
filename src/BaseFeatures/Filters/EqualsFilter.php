@@ -3,8 +3,6 @@
 namespace BluefynInternational\ReportEngine\BaseFeatures\Filters;
 
 use Illuminate\Database\Query\Builder;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Carbon;
 
 class EqualsFilter extends BaseFilter
 {
@@ -17,17 +15,11 @@ class EqualsFilter extends BaseFilter
     public function apply(Builder $builder, array $options = []) : Builder
     {
         if ($this->valueIsDate()) {
-            $value = Carbon::parse($this->getValue());
+            $greaterThanEqual = new GreaterThanOrEqualFilter($this->getColumn(), $this->getValue());
+            $lessThanEqual = new LessThanOrEqualFilter($this->getColumn(), $this->getValue());
+            $builder = $greaterThanEqual->apply($builder, $options);
 
-            if ($timeZoneString = Arr::get($options, 'timezone')) {
-                $value->shiftTimezone($timeZoneString);
-            }
-
-            $greaterThanEqual = new GreaterThanOrEqualFilter($this->getColumn(), $value);
-            $lessThanEqual = new LessThanOrEqualFilter($this->getColumn(), $value);
-            $builder = $greaterThanEqual->apply($builder);
-
-            return $lessThanEqual->apply($builder);
+            return $lessThanEqual->apply($builder, $options);
         }
 
         $action = $this->getAction();
