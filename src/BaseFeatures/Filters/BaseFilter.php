@@ -24,10 +24,10 @@ abstract class BaseFilter implements Arrayable
     /**
      * BaseFilter constructor.
      *
-     * @param Column $column
-     * @param null   $value
+     * @param Column       $column
+     * @param mixed|null   $value
      */
-    public function __construct(Column $column, $value = null)
+    public function __construct(Column $column, mixed $value = null)
     {
         $this->setColumn($column);
         $this->setValue($value);
