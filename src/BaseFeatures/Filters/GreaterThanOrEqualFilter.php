@@ -17,18 +17,7 @@ class GreaterThanOrEqualFilter extends BaseFilter
     public function apply(Builder $builder, array $options = []) : Builder
     {
         $action = $this->getAction();
-        $value = $this->getValue();
-
-        if ($this->valueIsDate()) {
-            /**
-             * @var Carbon $value
-             */
-            if ($timeZoneString = Arr::get($options, 'timezone')) {
-                $value->shiftTimezone($timeZoneString);
-            }
-
-            $value = $value->utc()->toDateTimeString();
-        }
+        $value = $this->getValue($options);
 
         return $builder->$action($this->getField(), '>=', $value);
     }
@@ -36,10 +25,18 @@ class GreaterThanOrEqualFilter extends BaseFilter
     /**
      * @return null|string
      */
-    public function getValue()
+    public function getValue(array $options = [])
     {
         if ($this->valueIsDate()) {
-            return parent::getValue()->startOfDay();
+            /**
+             * @var Carbon $value
+             */
+            $value = parent::getValue();
+            if ($timeZoneString = Arr::get($options, 'timezone')) {
+                $value->shiftTimezone($timeZoneString);
+            }
+
+            return $value->startOfDay()->utc()->toDateTimeString();
         }
 
         return parent::getValue();
