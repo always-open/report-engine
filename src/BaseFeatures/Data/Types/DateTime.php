@@ -57,6 +57,11 @@ class DateTime extends BaseType
         return $this;
     }
 
+    public function getOutputTimezone() : string
+    {
+        return $this->outputTzName;
+    }
+
     public function setOutputTimezone(string|null $timezone) : self
     {
         $this->outputTzName = $timezone;

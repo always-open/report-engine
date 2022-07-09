@@ -32,7 +32,10 @@ class GreaterThanOrEqualFilter extends BaseFilter
              * @var Carbon $value
              */
             $value = parent::getValue();
-            if ($timeZoneString = Arr::get($options, 'timezone')) {
+            $timeZoneString = $this->getColumn()->type()->getOutputTimezone()
+                ?? Arr::get($options, 'timezone');
+
+            if ($timeZoneString) {
                 $value->shiftTimezone($timeZoneString);
             }
 
