@@ -481,4 +481,11 @@ abstract class ReportBase implements Responsable, Arrayable
 
         return $output;
     }
+
+    public function getMetaData() : array
+    {
+        $encodedData = $this->currentRequest->get('metaData', '');
+
+        return json_decode(json: base64_decode($encodedData), associative: true) ?? [];
+    }
 }

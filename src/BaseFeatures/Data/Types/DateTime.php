@@ -23,6 +23,8 @@ class DateTime extends BaseType
 
     protected string $outputFormat = 'L';
 
+    protected ?string $formatter = 'datetime';
+
     public function __construct(
         string|null $outputFormat = null,
         string|null $placeholder = null,
@@ -55,6 +57,11 @@ class DateTime extends BaseType
         return $this;
     }
 
+    public function getOutputTimezone() : ?string
+    {
+        return $this->outputTzName;
+    }
+
     public function setOutputTimezone(string|null $timezone) : self
     {
         $this->outputTzName = $timezone;
@@ -64,7 +71,7 @@ class DateTime extends BaseType
 
     public function formatter(): string
     {
-        return 'datetime';
+        return $this->formatter;
     }
 
     public function formatterParams(): array

@@ -17,9 +17,9 @@ class EqualsFilter extends BaseFilter
         if ($this->valueIsDate()) {
             $greaterThanEqual = new GreaterThanOrEqualFilter($this->getColumn(), $this->getValue());
             $lessThanEqual = new LessThanOrEqualFilter($this->getColumn(), $this->getValue());
-            $builder = $greaterThanEqual->apply($builder);
+            $builder = $greaterThanEqual->apply($builder, $options);
 
-            return $lessThanEqual->apply($builder);
+            return $lessThanEqual->apply($builder, $options);
         }
 
         $action = $this->getAction();

@@ -105,6 +105,19 @@
             })
         }
 
+        function addMetaDataToUrl(url)
+        {
+            let metaData = {
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            }
+
+            let encodedMetaData = btoa(JSON.stringify(metaData))
+
+            url.searchParams.append('metaData', encodedMetaData)
+
+            return url
+        }
+
         (() => {
             $('#filterContainer .custom-select').change()
 
@@ -177,8 +190,17 @@
                     }
                 })
 
-                history.replaceState(null, '', endpoint.replace('.json', '') + '?' + filterParams.toString());
-                table.setData(endpoint + '?' + filterParams.toString());
+                let viewReportUrl = endpoint.replace('.json', '') + '?' + filterParams.toString()
+                let dataReportUrl = endpoint + '?' + filterParams.toString()
+
+                viewReportUrlObject = new URL(viewReportUrl)
+                dataReportUrlObject = new URL(dataReportUrl)
+
+                viewReportUrlObject = addMetaDataToUrl(viewReportUrlObject)
+                dataReportUrlObject = addMetaDataToUrl(dataReportUrlObject)
+
+                history.replaceState(null, '', viewReportUrlObject.toString());
+                table.setData(dataReportUrlObject.toString());
             });
 
             @if($autoloadInitialData) {

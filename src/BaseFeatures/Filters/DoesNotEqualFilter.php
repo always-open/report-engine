@@ -2,7 +2,9 @@
 
 namespace BluefynInternational\ReportEngine\BaseFeatures\Filters;
 
+use Carbon\Carbon;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Arr;
 
 class DoesNotEqualFilter extends BaseFilter
 {
@@ -44,5 +46,28 @@ class DoesNotEqualFilter extends BaseFilter
     public static function key(): string
     {
         return 'does_not_equal';
+    }
+
+    /**
+     * @return null|string|Carbon
+     */
+    public function getValue(array $options = [])
+    {
+        if ($this->valueIsDate()) {
+            /**
+             * @var Carbon $value
+             */
+            $value = parent::getValue();
+            $timeZoneString = $this->getColumn()->type()->getOutputTimezone()
+                ?? Arr::get($options, 'timezone');
+
+            if ($timeZoneString) {
+                $value->shiftTimezone($timeZoneString);
+            }
+
+            return $value->utc();
+        }
+
+        return parent::getValue();
     }
 }

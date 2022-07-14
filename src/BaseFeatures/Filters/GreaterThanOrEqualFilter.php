@@ -2,7 +2,9 @@
 
 namespace BluefynInternational\ReportEngine\BaseFeatures\Filters;
 
+use Carbon\Carbon;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Arr;
 
 class GreaterThanOrEqualFilter extends BaseFilter
 {
@@ -15,17 +17,29 @@ class GreaterThanOrEqualFilter extends BaseFilter
     public function apply(Builder $builder, array $options = []) : Builder
     {
         $action = $this->getAction();
+        $value = $this->getValue($options);
 
-        return $builder->$action($this->getField(), '>=', $this->getValue());
+        return $builder->$action($this->getField(), '>=', $value);
     }
 
     /**
      * @return null|string
      */
-    public function getValue()
+    public function getValue(array $options = [])
     {
         if ($this->valueIsDate()) {
-            return parent::getValue()->startOfDay()->toDateTimeString();
+            /**
+             * @var Carbon $value
+             */
+            $value = parent::getValue();
+            $timeZoneString = $this->getColumn()->type()->getOutputTimezone()
+                ?? Arr::get($options, 'timezone');
+
+            if ($timeZoneString) {
+                $value->shiftTimezone($timeZoneString);
+            }
+
+            return $value->startOfDay()->utc()->toDateTimeString();
         }
 
         return parent::getValue();

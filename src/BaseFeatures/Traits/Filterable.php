@@ -21,10 +21,12 @@ trait Filterable
      */
     protected function applyFilters(array $params, Builder $builder) : Builder
     {
+        $options = $this->getMetaData();
+
         $this->getAppliedfilters($params)
-            ->each(function ($fields) use (&$builder) {
-                $fields->each(function ($filter) use (&$builder) {
-                    $builder = $this->filter($filter, $builder);
+            ->each(function ($fields) use ($options, &$builder) {
+                $fields->each(function ($filter) use ($options, &$builder) {
+                    $builder = $this->filter($filter, $builder, $options);
                 });
             });
 
