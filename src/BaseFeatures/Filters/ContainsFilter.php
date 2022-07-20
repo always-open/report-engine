@@ -3,6 +3,7 @@
 namespace BluefynInternational\ReportEngine\BaseFeatures\Filters;
 
 use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Facades\DB;
 
 class ContainsFilter extends BaseFilter
 {
@@ -25,9 +26,9 @@ class ContainsFilter extends BaseFilter
      *
      * @return Builder
      */
-    public static function build(Builder $builder, $field, $value, string $action = 'where') : Builder
+    public static function build(Builder $builder, mixed $field, mixed $value, string $action = 'where') : Builder
     {
-        return $builder->$action($field, 'like', '%' . $value . '%');
+        return $builder->$action(DB::raw('COALESCE(' . $field . ", '')"), 'like', '%' . $value . '%');
     }
 
     /**
