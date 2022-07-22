@@ -146,4 +146,9 @@ abstract class BaseFilter implements Arrayable
             'key' => $this->key(),
         ];
     }
+
+    protected static function escapeFieldName(string $field) : string
+    {
+        return '`' . implode('`.`', explode('.', $field)) . '`';
+    }
 }

@@ -28,7 +28,7 @@ class DoesNotContainFilter extends BaseFilter
      */
     public static function build(Builder $builder, mixed $field, mixed $value, string $action = 'where') : Builder
     {
-        return $builder->$action(DB::raw('COALESCE(' . $field . ", '')"), 'not like', '%' . $value . '%');
+        return $builder->$action(DB::raw('COALESCE(' . self::escapeFieldName($field) . ", '')"), 'not like', '%' . $value . '%');
     }
 
     /**
