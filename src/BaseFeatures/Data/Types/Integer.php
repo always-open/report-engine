@@ -1,8 +1,8 @@
 <?php
 
-namespace BluefynInternational\ReportEngine\BaseFeatures\Data\Types;
+namespace AlwaysOpen\ReportEngine\BaseFeatures\Data\Types;
 
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Bases\Number as BaseNumber;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Bases\Number as BaseNumber;
 
 class Integer extends BaseNumber
 {

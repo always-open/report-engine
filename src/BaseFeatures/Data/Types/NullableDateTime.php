@@ -1,10 +1,10 @@
 <?php
 
-namespace BluefynInternational\ReportEngine\BaseFeatures\Data\Types;
+namespace AlwaysOpen\ReportEngine\BaseFeatures\Data\Types;
 
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Bases\BaseType;
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\IsEmptyFilter;
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\IsNotEmptyFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Bases\BaseType;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\IsEmptyFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\IsNotEmptyFilter;
 use Illuminate\Support\Collection;
 
 class NullableDateTime extends DateTime

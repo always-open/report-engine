@@ -1,2 +1,2 @@
 providers:
-  - BluefynInternational\ReportEngine\ReportEngineServiceProvider
+  - AlwaysOpen\ReportEngine\ReportEngineServiceProvider

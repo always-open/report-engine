@@ -1,16 +1,16 @@
 <?php
 
-namespace BluefynInternational\ReportEngine\BaseFeatures\Traits;
+namespace AlwaysOpen\ReportEngine\BaseFeatures\Traits;
 
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Column;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\DateTime;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Dollar;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Integer;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\NullableDecimal;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\NullableInteger;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Number;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Percentage;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Text;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Column;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\DateTime;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Dollar;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Integer;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\NullableDecimal;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\NullableInteger;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Number;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Percentage;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Text;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;

@@ -1,11 +1,11 @@
 <?php
 
-namespace BluefynInternational\ReportEngine\BaseFeatures\Data\Types;
+namespace AlwaysOpen\ReportEngine\BaseFeatures\Data\Types;
 
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Bases\BaseType;
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\ContainsFilter;
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\DoesNotContainFilter;
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\InFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Bases\BaseType;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\ContainsFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\DoesNotContainFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\InFilter;
 
 class Html extends BaseType
 {

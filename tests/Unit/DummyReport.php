@@ -1,9 +1,9 @@
 <?php
 
-namespace BluefynInternational\ReportEngine\Tests\Unit;
+namespace AlwaysOpen\ReportEngine\Tests\Unit;
 
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Text;
-use BluefynInternational\ReportEngine\ReportBase;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Text;
+use AlwaysOpen\ReportEngine\ReportBase;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
 

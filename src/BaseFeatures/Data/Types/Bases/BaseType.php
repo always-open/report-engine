@@ -1,6 +1,6 @@
 <?php
 
-namespace BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Bases;
+namespace AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Bases;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;

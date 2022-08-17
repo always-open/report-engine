@@ -1,9 +1,9 @@
 # General reporting engine for Laravel
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/bluefyn-international/report-engine.svg?style=flat-square)](https://packagist.org/packages/bluefyn-international/report-engine)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/bluefyn-international/report-engine/run-tests?label=tests)](https://github.com/bluefyn-international/report-engine/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/bluefyn-international/report-engine/Check%20&%20fix%20styling?label=code%20style)](https://github.com/bluefyn-international/report-engine/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/bluefyn-international/report-engine.svg?style=flat-square)](https://packagist.org/packages/bluefyn-international/report-engine)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/always-open/report-engine.svg?style=flat-square)](https://packagist.org/packages/always-open/report-engine)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/always-open/report-engine/run-tests?label=tests)](https://github.com/always-open/report-engine/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/always-open/report-engine/Check%20&%20fix%20styling?label=code%20style)](https://github.com/always-open/report-engine/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/always-open/report-engine.svg?style=flat-square)](https://packagist.org/packages/always-open/report-engine)
 
 General reporting engine for Laravel
 
@@ -12,7 +12,7 @@ General reporting engine for Laravel
 You can install the package via composer:
 
 ```bash
-composer require bluefyn-international/report-engine
+composer require always-open/report-engine
 ```
 
 ## Usage
@@ -28,8 +28,8 @@ the columns which will be output.
 namespace App\Reports\User;
 
 use App\Models\User;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Text;
-use BluefynInternational\ReportEngine\ReportBase;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Text;
+use AlwaysOpen\ReportEngine\ReportBase;
 use Illuminate\Database\Query\Builder;
 
 class UserReport extends ReportBase
@@ -279,7 +279,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [BluefynInternational](https://github.com/bluefyn-international)
+- [AlwaysOpen](https://github.com/always-open)
 - [All Contributors](../../contributors)
 
 ## License

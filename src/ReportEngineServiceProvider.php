@@ -1,6 +1,6 @@
 <?php
 
-namespace BluefynInternational\ReportEngine;
+namespace AlwaysOpen\ReportEngine;
 
 use Closure;
 use Illuminate\Routing\Route as RoutingRoute;

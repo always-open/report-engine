@@ -1,17 +1,17 @@
 {
-    "name": "bluefyn-international/report-engine",
+    "name": "always-open/report-engine",
     "description": "General reporting engine for Laravel",
     "keywords": [
-        "bluefyn-international",
+        "always-open",
         "laravel",
         "report-engine"
     ],
-    "homepage": "https://github.com/bluefyn-international/report-engine",
+    "homepage": "https://github.com/always-open/report-engine",
     "license": "MIT",
     "authors": [
         {
-            "name": "BluefynInternational",
-            "email": "quentin.schmick@nathanjames.com",
+            "name": "AlwaysOpen",
+            "email": "qschmick@gmail.com",
             "role": "Developer"
         }
     ],
@@ -19,7 +19,7 @@
         "php": "^8.0.0|^8.1.0",
         "spatie/laravel-package-tools": "^1.4.3",
         "illuminate/contracts": "^9.0",
-        "bluefyn-international/sidekick": "^3.0",
+        "always-open/sidekick": "^3.0",
         "brick/money": "^0.5.0",
         "laravelcollective/html": "^6.2"
     },
@@ -33,12 +33,12 @@
     },
     "autoload": {
         "psr-4": {
-            "BluefynInternational\\ReportEngine\\": "src"
+            "AlwaysOpen\\ReportEngine\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "BluefynInternational\\ReportEngine\\Tests\\": "tests"
+            "AlwaysOpen\\ReportEngine\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -52,10 +52,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "BluefynInternational\\ReportEngine\\ReportEngineServiceProvider"
+                "AlwaysOpen\\ReportEngine\\ReportEngineServiceProvider"
             ],
             "aliases": {
-                "ReportEngine": "BluefynInternational\\ReportEngine\\ReportEngineFacade"
+                "ReportEngine": "AlwaysOpen\\ReportEngine\\ReportEngineFacade"
             }
         }
     },

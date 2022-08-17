@@ -1,6 +1,6 @@
 <?php
 
-namespace BluefynInternational\ReportEngine\BaseFeatures\ContextActions;
+namespace AlwaysOpen\ReportEngine\BaseFeatures\ContextActions;
 
 use Illuminate\Contracts\Support\Arrayable;
 

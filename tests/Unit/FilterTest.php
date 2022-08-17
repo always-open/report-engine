@@ -1,21 +1,21 @@
 <?php
 
-namespace BluefynInternational\ReportEngine\Tests\Unit;
+namespace AlwaysOpen\ReportEngine\Tests\Unit;
 
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Column;
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\ContainsFilter;
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\DoesNotContainFilter;
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\DoesNotEqualFilter;
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\GreaterThanFilter;
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\GreaterThanOrEqualFilter;
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\IsEmptyFilter;
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\IsFalseFilter;
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\IsNotEmptyFilter;
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\IsTrueFilter;
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\LessThanFilter;
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\LessThanOrEqualFilter;
-use BluefynInternational\ReportEngine\Tests\TestCase;
-use BluefynInternational\Sidekick\Helpers\Query;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Column;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\ContainsFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\DoesNotContainFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\DoesNotEqualFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\GreaterThanFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\GreaterThanOrEqualFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\IsEmptyFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\IsFalseFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\IsNotEmptyFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\IsTrueFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\LessThanFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\LessThanOrEqualFilter;
+use AlwaysOpen\ReportEngine\Tests\TestCase;
+use AlwaysOpen\Sidekick\Helpers\Query;
 use Illuminate\Support\Facades\DB;
 
 class FilterTest extends TestCase

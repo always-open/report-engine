@@ -1,9 +1,9 @@
 <?php
 
-namespace BluefynInternational\ReportEngine\BaseFeatures\Data\Types;
+namespace AlwaysOpen\ReportEngine\BaseFeatures\Data\Types;
 
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Bases\BaseType;
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\EqualsFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Bases\BaseType;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\EqualsFilter;
 use Illuminate\Support\Collection;
 
 class Enum extends BaseType

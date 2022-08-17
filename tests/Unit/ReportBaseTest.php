@@ -1,8 +1,8 @@
 <?php
 
-namespace BluefynInternational\ReportEngine\Tests\Unit;
+namespace AlwaysOpen\ReportEngine\Tests\Unit;
 
-use BluefynInternational\ReportEngine\Tests\TestCase;
+use AlwaysOpen\ReportEngine\Tests\TestCase;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 

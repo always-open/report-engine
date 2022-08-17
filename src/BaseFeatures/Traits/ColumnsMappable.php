@@ -1,6 +1,6 @@
 <?php
 
-namespace BluefynInternational\ReportEngine\BaseFeatures\Traits;
+namespace AlwaysOpen\ReportEngine\BaseFeatures\Traits;
 
 use Illuminate\Support\Collection;
 

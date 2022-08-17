@@ -1,11 +1,11 @@
 <?php
 
-namespace BluefynInternational\ReportEngine;
+namespace AlwaysOpen\ReportEngine;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \BluefynInternational\ReportEngine\ReportEngine
+ * @see \AlwaysOpen\ReportEngine\ReportEngine
  */
 class ReportEngineFacade extends Facade
 {

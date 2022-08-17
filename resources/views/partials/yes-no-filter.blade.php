@@ -8,8 +8,8 @@
             onchange="document.getElementById('{{ $field }}_filter_action').value = this.selectedOptions[0].getAttribute('data-operator') || '';"
         >
             <option></option>
-            <option value="1" data-operator="{{ \BluefynInternational\ReportEngine\BaseFeatures\Filters\IsTrueFilter::key() }}">Yes</option>
-            <option value="0" data-operator="{{ \BluefynInternational\ReportEngine\BaseFeatures\Filters\IsFalseFilter::key() }}">No</option>
+            <option value="1" data-operator="{{ \AlwaysOpen\ReportEngine\BaseFeatures\Filters\IsTrueFilter::key() }}">Yes</option>
+            <option value="0" data-operator="{{ \AlwaysOpen\ReportEngine\BaseFeatures\Filters\IsFalseFilter::key() }}">No</option>
         </select>
     </div>
 </div>

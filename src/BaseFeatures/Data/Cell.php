@@ -1,8 +1,8 @@
 <?php
 
-namespace BluefynInternational\ReportEngine\BaseFeatures\Data;
+namespace AlwaysOpen\ReportEngine\BaseFeatures\Data;
 
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Bases\BaseType;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Bases\BaseType;
 use Throwable;
 
 class Cell

@@ -1,6 +1,6 @@
 <?php
 
-namespace BluefynInternational\ReportEngine\BaseFeatures\Filters;
+namespace AlwaysOpen\ReportEngine\BaseFeatures\Filters;
 
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;

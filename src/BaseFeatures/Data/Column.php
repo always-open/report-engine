@@ -1,11 +1,11 @@
 <?php
 
-namespace BluefynInternational\ReportEngine\BaseFeatures\Data;
+namespace AlwaysOpen\ReportEngine\BaseFeatures\Data;
 
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Bases\BaseType;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Enum;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Text;
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\BaseFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Bases\BaseType;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Enum;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Text;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\BaseFilter;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Arr;
@@ -324,7 +324,7 @@ class Column implements Arrayable
     /**
      * @param string|Expression $column
      *
-     * @return \BluefynInternational\ReportEngine\BaseFeatures\Data\Column
+     * @return \AlwaysOpen\ReportEngine\BaseFeatures\Data\Column
      */
     public function setAliasFrom($column): self
     {

@@ -1,11 +1,11 @@
 <?php
 
-namespace BluefynInternational\ReportEngine\Tests\Unit;
+namespace AlwaysOpen\ReportEngine\Tests\Unit;
 
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Cell;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Column;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Text;
-use BluefynInternational\ReportEngine\Tests\TestCase;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Cell;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Column;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Text;
+use AlwaysOpen\ReportEngine\Tests\TestCase;
 
 class CellTest extends TestCase
 {

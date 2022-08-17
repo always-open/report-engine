@@ -1,9 +1,9 @@
 <?php
 
-namespace BluefynInternational\ReportEngine\BaseFeatures\Traits;
+namespace AlwaysOpen\ReportEngine\BaseFeatures\Traits;
 
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Cell;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Row;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Cell;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Row;
 use Illuminate\Support\Carbon;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\PageSetup;

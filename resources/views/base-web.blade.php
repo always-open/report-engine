@@ -20,7 +20,7 @@
                     <div class="card-header">
                         <div id="filterContainer">
                             <div>
-                                {!! \BluefynInternational\ReportEngine\ReportBase::rendersFilters($filterColumns) !!}
+                                {!! \AlwaysOpen\ReportEngine\ReportBase::rendersFilters($filterColumns) !!}
                             </div>
                             <div>
                                 <button id="download-csv">Download CSV</button>

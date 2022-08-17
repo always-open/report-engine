@@ -1,8 +1,8 @@
 <?php
 
-namespace BluefynInternational\ReportEngine\Tests;
+namespace AlwaysOpen\ReportEngine\Tests;
 
-use BluefynInternational\ReportEngine\ReportEngineServiceProvider;
+use AlwaysOpen\ReportEngine\ReportEngineServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra

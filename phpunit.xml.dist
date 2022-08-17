@@ -19,7 +19,7 @@
     verbose="true"
 >
     <testsuites>
-        <testsuite name="BluefynInternational Test Suite">
+        <testsuite name="AlwaysOpen Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

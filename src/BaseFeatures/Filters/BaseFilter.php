@@ -1,9 +1,9 @@
 <?php
 
-namespace BluefynInternational\ReportEngine\BaseFeatures\Filters;
+namespace AlwaysOpen\ReportEngine\BaseFeatures\Filters;
 
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Column;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\DateTime;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Column;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\DateTime;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Query\Expression;

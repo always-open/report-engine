@@ -1,8 +1,8 @@
 <?php
 
-namespace BluefynInternational\ReportEngine\BaseFeatures\Traits;
+namespace AlwaysOpen\ReportEngine\BaseFeatures\Traits;
 
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\BaseFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\BaseFilter;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 
@@ -70,7 +70,7 @@ trait Filterable
                 /** @var Collection $filters */
                 return [
                     $key => $filters->map(function ($filter) {
-                        /** @var \BluefynInternational\ReportEngine\BaseFeatures\Filters\BaseFilter $filter */
+                        /** @var \AlwaysOpen\ReportEngine\BaseFeatures\Filters\BaseFilter $filter */
                         return $filter->getValue();
                     }),
                 ];

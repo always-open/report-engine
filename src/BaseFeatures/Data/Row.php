@@ -1,6 +1,6 @@
 <?php
 
-namespace BluefynInternational\ReportEngine\BaseFeatures\Data;
+namespace AlwaysOpen\ReportEngine\BaseFeatures\Data;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Collection;

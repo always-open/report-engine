@@ -1,6 +1,6 @@
 <?php
 
-namespace BluefynInternational\ReportEngine\Tests;
+namespace AlwaysOpen\ReportEngine\Tests;
 
 class ExampleTest extends TestCase
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Bases;
+namespace AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Bases;
 
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\DoesNotEqualFilter;
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\EqualsFilter;
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\GreaterThanFilter;
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\GreaterThanOrEqualFilter;
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\LessThanFilter;
-use BluefynInternational\ReportEngine\BaseFeatures\Filters\LessThanOrEqualFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\DoesNotEqualFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\EqualsFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\GreaterThanFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\GreaterThanOrEqualFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\LessThanFilter;
+use AlwaysOpen\ReportEngine\BaseFeatures\Filters\LessThanOrEqualFilter;
 
 abstract class Number extends BaseType
 {

@@ -1,20 +1,20 @@
 <?php
 
-namespace BluefynInternational\ReportEngine\Tests\Unit;
+namespace AlwaysOpen\ReportEngine\Tests\Unit;
 
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\DateTime;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Decimal;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Dollar;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Integer;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\NullableDecimal;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\NullableInteger;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Number;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Percentage;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Text;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\Url;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\YesNo;
-use BluefynInternational\ReportEngine\BaseFeatures\Data\Types\YesNoShort;
-use BluefynInternational\ReportEngine\Tests\TestCase;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\DateTime;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Decimal;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Dollar;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Integer;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\NullableDecimal;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\NullableInteger;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Number;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Percentage;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Text;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Url;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\YesNo;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\YesNoShort;
+use AlwaysOpen\ReportEngine\Tests\TestCase;
 
 class DataTypeTest extends TestCase
 {
