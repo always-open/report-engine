@@ -19,7 +19,7 @@
         "php": "^8.0.0|^8.1.0",
         "spatie/laravel-package-tools": "^1.4.3",
         "illuminate/contracts": "^9.0",
-        "always-open/sidekick": "^3.0",
+        "always-open/sidekick": "^4.0",
         "brick/money": "^0.5.0",
         "laravelcollective/html": "^6.2"
     },
