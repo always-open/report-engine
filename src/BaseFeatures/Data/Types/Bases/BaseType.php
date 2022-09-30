@@ -175,6 +175,7 @@ abstract class BaseType
             'field' => $name,
             'value' => $value,
             'action_types' => $action_types,
+            'default_value' => $this->default_value,
             'input_type' => $columnType->inputType(),
             'classes' => $this->styleClass(),
             'placeholder' => $this->placeholder(),
