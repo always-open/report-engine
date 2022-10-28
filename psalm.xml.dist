@@ -13,4 +13,11 @@
             <directory name="vendor"/>
         </ignoreFiles>
     </projectFiles>
+    <issueHandlers>
+        <InvalidScalarArgument>
+            <errorLevel type="suppress">
+                <file name="src/ReportBase.php" />
+            </errorLevel>
+        </InvalidScalarArgument>
+    </issueHandlers>
 </psalm>

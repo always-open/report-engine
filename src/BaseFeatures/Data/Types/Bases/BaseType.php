@@ -202,7 +202,7 @@ abstract class BaseType
         return $this;
     }
 
-    public function formatter() : string
+    public function formatter() : string|null
     {
         return $this->formatter ?? 'plaintext';
     }

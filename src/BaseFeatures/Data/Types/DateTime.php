@@ -69,7 +69,7 @@ class DateTime extends BaseType
         return $this;
     }
 
-    public function formatter(): string
+    public function formatter(): string|null
     {
         return $this->formatter;
     }

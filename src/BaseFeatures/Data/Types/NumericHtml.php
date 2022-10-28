@@ -21,10 +21,7 @@ class NumericHtml extends BaseNumber
         return (string) $value;
     }
 
-    /**
-     * @return string
-     */
-    public function formatter() : string
+    public function formatter() : string|null
     {
         return 'html';
     }
