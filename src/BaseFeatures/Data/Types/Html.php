@@ -34,10 +34,7 @@ class Html extends BaseType
         ];
     }
 
-    /**
-     * @return string
-     */
-    public function formatter() : string
+    public function formatter() : string|null
     {
         return 'html';
     }

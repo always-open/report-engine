@@ -318,7 +318,7 @@ abstract class ReportBase implements Responsable, Arrayable
         $this->build();
 
         return [
-            'columns' => collect($this->columns)->map(function (Column $column) {
+            'columns' => $this->columns->map(function (Column $column) {
                 return $column->toArray();
             }),
             'data' => $this->rowsArray,

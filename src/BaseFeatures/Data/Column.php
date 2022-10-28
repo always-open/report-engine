@@ -3,6 +3,7 @@
 namespace AlwaysOpen\ReportEngine\BaseFeatures\Data;
 
 use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Bases\BaseType;
+use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\DateTime;
 use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Enum;
 use AlwaysOpen\ReportEngine\BaseFeatures\Data\Types\Text;
 use AlwaysOpen\ReportEngine\BaseFeatures\Filters\BaseFilter;
@@ -115,10 +116,7 @@ class Column implements Arrayable
         return $value;
     }
 
-    /**
-     * @return BaseType
-     */
-    public function type(): BaseType
+    public function type(): BaseType|DateTime
     {
         if (! empty($this->config['type'])) {
             if ($this->config['type'] instanceof BaseType) {
@@ -566,7 +564,7 @@ class Column implements Arrayable
             ->renderFilter($this->label(), $this->name(), $this->filterInstances(), $this->type(), $this->getFilterValue());
     }
 
-    public function formatter() : string
+    public function formatter() : string|null
     {
         return $this->type()->formatter();
     }
