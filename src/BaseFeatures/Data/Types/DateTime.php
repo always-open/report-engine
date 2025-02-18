@@ -25,6 +25,8 @@ class DateTime extends BaseType
 
     protected ?string $formatter = 'datetime';
 
+    protected string $filterView = 'report-engine::partials.date-filter';
+
     public function __construct(
         string|null $outputFormat = null,
         string|null $placeholder = null,
@@ -139,7 +141,7 @@ class DateTime extends BaseType
             return Carbon::parse($value)->isoFormat($this->outputFormat);
         });
 
-        return view('report-engine::partials.date-filter')->with([
+        return view($this->filterView)->with([
             'label' => $label,
             'field' => $name,
             'value' => $value,

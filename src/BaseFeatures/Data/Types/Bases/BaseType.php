@@ -22,6 +22,8 @@ abstract class BaseType
 
     protected ?string $formatter = null;
 
+    protected string $filterView = 'report-engine::partials.base-filter';
+
     /**
      * @param mixed       $value
      * @param object|null $result
@@ -99,6 +101,26 @@ abstract class BaseType
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getFilterView() : string
+    {
+        return $this->filterView;
+    }
+
+    /**
+     * @param string $filterView
+     *
+     * @return $this
+     */
+    public function setFilterView(string $filterView) : self
+    {
+        $this->filterView = $filterView;
+
+        return $this;
+    }
+
     public function getDefaultComparisonOperators() : array
     {
         return $this->default_comparison_operators;
@@ -162,7 +184,7 @@ abstract class BaseType
      */
     public function renderFilter(string $label, string $name, array $action_types, self $columnType, Collection $value)
     {
-        return view('report-engine::partials.base-filter')
+        return view($this->filterView)
             ->with(
                 $this->getConfig($label, $name, $action_types, $columnType, $value)
             );

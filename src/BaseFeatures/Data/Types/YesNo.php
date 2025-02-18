@@ -9,6 +9,8 @@ use Illuminate\Support\Collection;
 
 class YesNo extends BaseType
 {
+    protected string $filterView = 'report-engine::partials.yes-no-filter';
+
     /**
      * @param mixed       $value
      * @param object|null $result
@@ -44,7 +46,7 @@ class YesNo extends BaseType
      */
     public function renderFilter(string $label, string $name, array $action_types, BaseType $columnType, Collection $value)
     {
-        return view('report-engine::partials.yes-no-filter')->with([
+        return view($this->filterView)->with([
             'label' => $label,
             'field' => $name,
             'options' => collect($this->getOptions()),

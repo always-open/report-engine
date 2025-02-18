@@ -12,6 +12,7 @@ class Enum extends BaseType
     protected $prepend_all = true;
     protected $default_value;
     protected $use_keys = false;
+    protected string $filterView = 'report-engine::partials.enum-filter';
 
     /**
      * Enum constructor.
@@ -117,7 +118,7 @@ class Enum extends BaseType
      */
     public function renderFilter(string $label, string $name, array $action_types, BaseType $columnType, Collection $value)
     {
-        return view('report-engine::partials.enum-filter')->with([
+        return view($this->filterView)->with([
             'label' => $label,
             'field' => $name,
             'options' => $this->options,

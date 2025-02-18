@@ -9,6 +9,8 @@ use Illuminate\Support\Collection;
 
 class NullableDateTime extends DateTime
 {
+    protected string $filterView = 'report-engine::partials.empty-not-empty-filter';
+
     public function __construct(?string $date_time_format = null, ?string $placeholder = null, ?string $output_tz_name = null)
     {
         parent::__construct($date_time_format, $placeholder, $output_tz_name);
@@ -27,7 +29,7 @@ class NullableDateTime extends DateTime
      */
     public function renderFilter(string $label, string $name, array $action_types, BaseType $columnType, Collection $value)
     {
-        return view('report-engine::partials.empty-not-empty-filter')->with([
+        return view($this->filterView)->with([
             'label' => $label,
             'field' => $name,
             'options' => collect($this->getOptions()),
