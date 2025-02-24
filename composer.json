@@ -25,7 +25,7 @@
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^v3.5",
         "nunomaduro/collision": "^v8.6",
-        "orchestra/testbench": "^v9.11",
+        "orchestra/testbench": "^v9.11|v10.0",
         "phpunit/phpunit": "^11.0",
         "spatie/laravel-ray": "^1.39",
         "vimeo/psalm": "^6.8"
