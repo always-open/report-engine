@@ -11,14 +11,15 @@ class ReportEngineServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
-        /*
-         * This class is a Package Service Provider
-         *
-         * More info: https://github.com/spatie/laravel-package-tools
-         */
         $package
             ->name('report-engine')
             ->hasViews();
+
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__ . '/../config/report-engine.php' => config_path('report-engine.php'),
+            ], 'config');
+        }
     }
 
     public function booting(Closure $callback)
@@ -27,7 +28,9 @@ class ReportEngineServiceProvider extends PackageServiceProvider
             /**
              * @var \Illuminate\Routing\Route $this
              */
-            return $this->setUri($this->uri() . '{dot?}{_format?}')->where('dot', '\.');
+            return $this->setUri($this->uri() . '{dot?}{_format?}')
+                ->where('dot', '\.')
+                ->where('_format', '(' . implode('|', config('report-engine.format')) . ')');
         });
     }
 }
