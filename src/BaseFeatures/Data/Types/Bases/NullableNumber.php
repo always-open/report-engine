@@ -23,6 +23,7 @@ abstract class NullableNumber extends Number
      *
      * @return array
      */
+    #[\Override]
     public static function availableFilters(): array
     {
         return [

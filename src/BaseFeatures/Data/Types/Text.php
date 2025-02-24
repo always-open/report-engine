@@ -17,6 +17,7 @@ class Text extends BaseType
      *
      * @return string
      */
+    #[\Override]
     public function typeFormat($value, ?object $result = null)
     {
         if ($this->formatClosure) {
@@ -31,6 +32,7 @@ class Text extends BaseType
      *
      * @return array
      */
+    #[\Override]
     public static function availableFilters(): array
     {
         return [

@@ -12,6 +12,7 @@ class NumericHtml extends BaseNumber
      *
      * @return string
      */
+    #[\Override]
     public function typeFormat($value, ?object $result = null)
     {
         if ($this->formatClosure) {
@@ -21,6 +22,7 @@ class NumericHtml extends BaseNumber
         return (string) $value;
     }
 
+    #[\Override]
     public function formatter() : string|null
     {
         return 'html';

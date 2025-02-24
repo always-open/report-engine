@@ -521,6 +521,7 @@ class Column implements Arrayable
         return null;
     }
 
+    #[\Override]
     public function toArray() : array
     {
         $action_types = collect($this->filterInstances())

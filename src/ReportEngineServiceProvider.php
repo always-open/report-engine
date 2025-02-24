@@ -9,6 +9,7 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class ReportEngineServiceProvider extends PackageServiceProvider
 {
+    #[\Override]
     public function configurePackage(Package $package): void
     {
         $package
@@ -22,6 +23,7 @@ class ReportEngineServiceProvider extends PackageServiceProvider
         }
     }
 
+    #[\Override]
     public function booting(Closure $callback)
     {
         RoutingRoute::macro('multiformat', function () {

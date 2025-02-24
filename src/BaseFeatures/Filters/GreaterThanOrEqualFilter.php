@@ -14,6 +14,7 @@ class GreaterThanOrEqualFilter extends BaseFilter
      *
      * @return Builder
      */
+    #[\Override]
     public function apply(Builder $builder, array $options = []) : Builder
     {
         $action = $this->getAction();
@@ -25,6 +26,7 @@ class GreaterThanOrEqualFilter extends BaseFilter
     /**
      * @return null|string
      */
+    #[\Override]
     public function getValue(array $options = [])
     {
         if ($this->valueIsDate()) {
@@ -48,6 +50,7 @@ class GreaterThanOrEqualFilter extends BaseFilter
     /**
      * @return string
      */
+    #[\Override]
     public static function label(): string
     {
         return '≥ greater than or equal to';
@@ -56,6 +59,7 @@ class GreaterThanOrEqualFilter extends BaseFilter
     /**
      * @return string
      */
+    #[\Override]
     public static function key(): string
     {
         return 'greater_than_or_equal';

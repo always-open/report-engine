@@ -14,10 +14,16 @@
         </ignoreFiles>
     </projectFiles>
     <issueHandlers>
-        <InvalidScalarArgument>
+        <UnusedClass>
+            <errorLevel type="suppress">
+                <file name="src/ReportEngineServiceProvider.php" />
+                <file name="src/ReportEngineFacade.php" />
+            </errorLevel>
+        </UnusedClass>
+        <PossiblyUnusedMethod>
             <errorLevel type="suppress">
                 <file name="src/ReportBase.php" />
             </errorLevel>
-        </InvalidScalarArgument>
+        </PossiblyUnusedMethod>
     </issueHandlers>
 </psalm>

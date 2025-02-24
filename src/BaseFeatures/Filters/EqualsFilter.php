@@ -12,6 +12,7 @@ class EqualsFilter extends BaseFilter
      *
      * @return Builder
      */
+    #[\Override]
     public function apply(Builder $builder, array $options = []) : Builder
     {
         if ($this->valueIsDate()) {
@@ -30,6 +31,7 @@ class EqualsFilter extends BaseFilter
     /**
      * @return string
      */
+    #[\Override]
     public static function label(): string
     {
         return '= equals';
@@ -38,6 +40,7 @@ class EqualsFilter extends BaseFilter
     /**
      * @return string
      */
+    #[\Override]
     public static function key(): string
     {
         return 'equals';

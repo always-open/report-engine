@@ -71,11 +71,13 @@ class DateTime extends BaseType
         return $this;
     }
 
+    #[\Override]
     public function formatter(): string|null
     {
         return $this->formatter;
     }
 
+    #[\Override]
     public function formatterParams(): array
     {
         $params = [
@@ -93,6 +95,7 @@ class DateTime extends BaseType
         return $params;
     }
 
+    #[\Override]
     public function inputType() : string
     {
         return 'date';
@@ -104,6 +107,7 @@ class DateTime extends BaseType
      *
      * @return string|null
      */
+    #[\Override]
     public function typeFormat($value, ?object $result = null) : ?string
     {
         return (new Carbon($value))->toDateTimeString(); //->setTimezone($this->outputTzName)->format($this->outputFormat);
@@ -114,6 +118,7 @@ class DateTime extends BaseType
      *
      * @return array
      */
+    #[\Override]
     public static function availableFilters(): array
     {
         return [
@@ -135,6 +140,7 @@ class DateTime extends BaseType
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
      */
+    #[\Override]
     public function renderFilter(string $label, string $name, array $action_types, BaseType $columnType, Collection $value)
     {
         $value = $value->map(function ($value) {

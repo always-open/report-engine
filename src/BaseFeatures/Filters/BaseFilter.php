@@ -137,6 +137,7 @@ abstract class BaseFilter implements Arrayable
         return $this->getColumn()->action();
     }
 
+    #[\Override]
     public function toArray() : array
     {
         return [

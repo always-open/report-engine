@@ -54,6 +54,7 @@ class Enum extends BaseType
      *
      * @return string
      */
+    #[\Override]
     public function typeFormat($value, ?object $result = null)
     {
         return (string) $value;
@@ -84,6 +85,7 @@ class Enum extends BaseType
      *
      * @return array
      */
+    #[\Override]
     public static function availableFilters(): array
     {
         return [
@@ -94,6 +96,7 @@ class Enum extends BaseType
     /**
      * @return array
      */
+    #[\Override]
     public function getOptions(): array
     {
         if ($this->prepend_all) {
@@ -116,6 +119,7 @@ class Enum extends BaseType
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
+    #[\Override]
     public function renderFilter(string $label, string $name, array $action_types, BaseType $columnType, Collection $value)
     {
         return view($this->filterView)->with([
@@ -127,6 +131,7 @@ class Enum extends BaseType
         ]);
     }
 
+    #[\Override]
     public function inputType() : string
     {
         return 'select';

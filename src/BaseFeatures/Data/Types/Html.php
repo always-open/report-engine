@@ -15,6 +15,7 @@ class Html extends BaseType
      *
      * @return string
      */
+    #[\Override]
     public function typeFormat($value, ?object $result = null)
     {
         return (string) $value;
@@ -25,6 +26,7 @@ class Html extends BaseType
      *
      * @return array
      */
+    #[\Override]
     public static function availableFilters(): array
     {
         return [
@@ -34,6 +36,7 @@ class Html extends BaseType
         ];
     }
 
+    #[\Override]
     public function formatter() : string|null
     {
         return 'html';

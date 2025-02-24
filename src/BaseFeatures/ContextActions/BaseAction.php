@@ -104,6 +104,7 @@ class BaseAction implements Arrayable
         return $this->functionName;
     }
 
+    #[\Override]
     public function toArray(): array
     {
         return [

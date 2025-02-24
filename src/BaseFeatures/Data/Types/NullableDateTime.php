@@ -27,6 +27,7 @@ class NullableDateTime extends DateTime
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
+    #[\Override]
     public function renderFilter(string $label, string $name, array $action_types, BaseType $columnType, Collection $value)
     {
         return view($this->filterView)->with([
@@ -38,6 +39,7 @@ class NullableDateTime extends DateTime
         ]);
     }
 
+    #[\Override]
     public static function availableFilters(): array
     {
         return [
@@ -46,11 +48,13 @@ class NullableDateTime extends DateTime
         ];
     }
 
+    #[\Override]
     public function inputType() : string
     {
         return 'select';
     }
 
+    #[\Override]
     public function getOptions() : array
     {
         return [

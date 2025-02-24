@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Facade;
  */
 class ReportEngineFacade extends Facade
 {
+    #[\Override]
     protected static function getFacadeAccessor()
     {
         return 'report-engine';

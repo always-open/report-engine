@@ -12,6 +12,7 @@ class Integer extends BaseNumber
      *
      * @return string
      */
+    #[\Override]
     public function typeFormat($value, ?object $result = null)
     {
         return $this->numberFormat((int) $value);

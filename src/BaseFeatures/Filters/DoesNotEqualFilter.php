@@ -14,6 +14,7 @@ class DoesNotEqualFilter extends BaseFilter
      *
      * @return Builder
      */
+    #[\Override]
     public function apply(Builder $builder, array $options = []) : Builder
     {
         $action = $this->getAction();
@@ -33,6 +34,7 @@ class DoesNotEqualFilter extends BaseFilter
      *
      * @return string
      */
+    #[\Override]
     public static function label(): string
     {
         return '≠ does not equal';
@@ -43,6 +45,7 @@ class DoesNotEqualFilter extends BaseFilter
      *
      * @return string
      */
+    #[\Override]
     public static function key(): string
     {
         return 'does_not_equal';
@@ -51,6 +54,7 @@ class DoesNotEqualFilter extends BaseFilter
     /**
      * @return null|string|Carbon
      */
+    #[\Override]
     public function getValue(array $options = [])
     {
         if ($this->valueIsDate()) {

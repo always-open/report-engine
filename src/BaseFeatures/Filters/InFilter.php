@@ -12,6 +12,7 @@ class InFilter extends BaseFilter
      *
      * @return Builder
      */
+    #[\Override]
     public function apply(Builder $builder, array $options = []) : Builder
     {
         $options = collect(explode(',', $this->getValue()))->map(fn ($s) => trim($s));
@@ -22,6 +23,7 @@ class InFilter extends BaseFilter
     /**
      * @return string
      */
+    #[\Override]
     public static function label(): string
     {
         return '() in';
@@ -30,6 +32,7 @@ class InFilter extends BaseFilter
     /**
      * @return string
      */
+    #[\Override]
     public static function key(): string
     {
         return 'in';

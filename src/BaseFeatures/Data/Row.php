@@ -91,6 +91,7 @@ class Row implements Arrayable
      *
      * @return array
      */
+    #[\Override]
     public function toArray(): array
     {
         return [

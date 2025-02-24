@@ -62,6 +62,7 @@ class Dollar extends BaseType
      *
      * @throws \Brick\Money\Exception\UnknownCurrencyException
      */
+    #[\Override]
     public function typeFormat($value, ?object $result = null): string
     {
         return Money::of($value, $this->getCurrency($result), null, RoundingMode::HALF_DOWN)
@@ -73,6 +74,7 @@ class Dollar extends BaseType
      *
      * @return array
      */
+    #[\Override]
     public static function availableFilters(): array
     {
         return [
@@ -85,6 +87,7 @@ class Dollar extends BaseType
         ];
     }
 
+    #[\Override]
     public function inputType() : string
     {
         return 'number';

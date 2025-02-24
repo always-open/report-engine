@@ -313,6 +313,7 @@ abstract class ReportBase implements Responsable, Arrayable
      *
      * @return array
      */
+    #[\Override]
     public function toArray(): array
     {
         $this->build();
@@ -402,6 +403,7 @@ abstract class ReportBase implements Responsable, Arrayable
      *
      * @return SymfonyResponse|Response
      */
+    #[\Override]
     public function toResponse($request) : SymfonyResponse
     {
         $format = $this->getCurrentRequest()->route('_format') ?? self::HTML_FORMAT;

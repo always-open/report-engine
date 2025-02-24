@@ -73,6 +73,7 @@ abstract class Number extends BaseType
      *
      * @return array
      */
+    #[\Override]
     public static function availableFilters(): array
     {
         return [
@@ -88,6 +89,7 @@ abstract class Number extends BaseType
     /**
      * @return string
      */
+    #[\Override]
     public function inputType() : string
     {
         return 'number';

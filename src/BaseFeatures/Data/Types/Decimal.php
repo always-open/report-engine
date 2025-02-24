@@ -32,6 +32,7 @@ class Decimal extends BaseNumber
      *
      * @return string
      */
+    #[\Override]
     public function typeFormat($value, ?object $result = null) : string
     {
         return $this->numberFormat((float) $value, $this->decimal_places);

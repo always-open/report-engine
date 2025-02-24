@@ -15,6 +15,7 @@ class Url extends BaseType
      *
      * @return \Illuminate\Contracts\Routing\UrlGenerator|string
      */
+    #[\Override]
     public function typeFormat($value, ?object $result = null)
     {
         return url($value);
@@ -25,6 +26,7 @@ class Url extends BaseType
      *
      * @return array
      */
+    #[\Override]
     public static function availableFilters(): array
     {
         return [

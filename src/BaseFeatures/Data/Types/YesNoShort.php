@@ -10,6 +10,7 @@ class YesNoShort extends YesNo
      *
      * @return string
      */
+    #[\Override]
     public function typeFormat($value, ?object $result = null)
     {
         return $value ? 'Y' : 'N';

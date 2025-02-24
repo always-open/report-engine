@@ -52,6 +52,7 @@ class ReportButton implements Arrayable
             ->render();
     }
 
+    #[\Override]
     public function toArray()
     {
         return [

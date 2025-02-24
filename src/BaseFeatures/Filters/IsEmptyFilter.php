@@ -12,6 +12,7 @@ class IsEmptyFilter extends BaseFilter
      *
      * @return Builder
      */
+    #[\Override]
     public function apply(Builder $builder, array $options = []) : Builder
     {
         /**
@@ -23,6 +24,7 @@ class IsEmptyFilter extends BaseFilter
     /**
      * @return string
      */
+    #[\Override]
     public static function label(): string
     {
         return 'is empty';
@@ -31,6 +33,7 @@ class IsEmptyFilter extends BaseFilter
     /**
      * @return string
      */
+    #[\Override]
     public static function key(): string
     {
         return 'is_empty';

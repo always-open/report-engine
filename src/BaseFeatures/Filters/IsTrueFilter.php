@@ -12,6 +12,7 @@ class IsTrueFilter extends BaseFilter
      *
      * @return Builder
      */
+    #[\Override]
     public function apply(Builder $builder, array $options = []) : Builder
     {
         $action = $this->getAction();
@@ -22,6 +23,7 @@ class IsTrueFilter extends BaseFilter
     /**
      * @return string
      */
+    #[\Override]
     public static function label(): string
     {
         return 'is true';
@@ -30,6 +32,7 @@ class IsTrueFilter extends BaseFilter
     /**
      * @return string
      */
+    #[\Override]
     public static function key(): string
     {
         return 'is_true';

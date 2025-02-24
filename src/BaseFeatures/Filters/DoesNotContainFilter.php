@@ -13,6 +13,7 @@ class DoesNotContainFilter extends BaseFilter
      *
      * @return Builder
      */
+    #[\Override]
     public function apply(Builder $builder, array $options = []) : Builder
     {
         return self::build($builder, $this->getField(), $this->getValue(), $this->getAction());
@@ -34,6 +35,7 @@ class DoesNotContainFilter extends BaseFilter
     /**
      * @return string
      */
+    #[\Override]
     public static function label(): string
     {
         return '⊄ does not contain';
@@ -42,6 +44,7 @@ class DoesNotContainFilter extends BaseFilter
     /**
      * @return string
      */
+    #[\Override]
     public static function key(): string
     {
         return 'does_not_contain';

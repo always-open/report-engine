@@ -13,6 +13,7 @@ class ContainsFilter extends BaseFilter
      *
      * @return Builder
      */
+    #[\Override]
     public function apply(Builder $builder, array $options = []) : Builder
     {
         return self::build($builder, $this->getField(), $this->getValue(), $this->getAction());
@@ -34,6 +35,7 @@ class ContainsFilter extends BaseFilter
     /**
      * @return string
      */
+    #[\Override]
     public static function label(): string
     {
         return '⊃ contains';
@@ -42,6 +44,7 @@ class ContainsFilter extends BaseFilter
     /**
      * @return string
      */
+    #[\Override]
     public static function key(): string
     {
         return 'contains';

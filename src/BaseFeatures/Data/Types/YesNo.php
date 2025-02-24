@@ -17,6 +17,7 @@ class YesNo extends BaseType
      *
      * @return string
      */
+    #[\Override]
     public function typeFormat($value, ?object $result = null)
     {
         return $value ? 'Yes' : 'No';
@@ -27,6 +28,7 @@ class YesNo extends BaseType
      *
      * @return array
      */
+    #[\Override]
     public static function availableFilters(): array
     {
         return [
@@ -44,6 +46,7 @@ class YesNo extends BaseType
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
+    #[\Override]
     public function renderFilter(string $label, string $name, array $action_types, BaseType $columnType, Collection $value)
     {
         return view($this->filterView)->with([
@@ -55,11 +58,13 @@ class YesNo extends BaseType
         ]);
     }
 
+    #[\Override]
     public function inputType() : string
     {
         return 'select';
     }
 
+    #[\Override]
     public function getOptions() : array
     {
         return [

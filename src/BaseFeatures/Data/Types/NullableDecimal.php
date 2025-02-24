@@ -12,6 +12,7 @@ class NullableDecimal extends NullableNumber
      *
      * @return string
      */
+    #[\Override]
     public function typeFormat($value, ?object $result = null)
     {
         if (null === $value || $this->getDefaultValue() === $value) {
