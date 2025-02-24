@@ -65,7 +65,7 @@ class Dollar extends BaseType
     public function typeFormat($value, ?object $result = null): string
     {
         return Money::of($value, $this->getCurrency($result), null, RoundingMode::HALF_DOWN)
-            ->formatTo('us_en');
+            ->formatTo(config('report-engine.locale.default', 'en_us'));
     }
 
     /**
