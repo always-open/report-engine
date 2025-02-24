@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": "^8.2.0|^8.3.0|^8.4.0",
-        "always-open/sidekick": "^5.0",
+        "always-open/sidekick": "^5.1",
         "brick/money": "^0.10.0",
         "illuminate/contracts": "^11.0|^12.0",
         "spatie/laravel-package-tools": "^1.19.0"
