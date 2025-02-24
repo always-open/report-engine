@@ -1,6 +1,8 @@
 version: "3.7"
 services:
   app:
+    depends_on:
+      - db
     build:
       context: ./
       dockerfile: ./docker/Dockerfile
@@ -21,6 +23,7 @@ services:
       MYSQL_ROOT_PASSWORD: test
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
+      MYSQL_ROOT_HOST: '%'
     networks:
       - report-engine
 

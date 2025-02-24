@@ -16,20 +16,19 @@
         }
     ],
     "require": {
-        "php": "^8.0.0|^8.1.0",
-        "spatie/laravel-package-tools": "^1.4.3",
-        "illuminate/contracts": "^9.0",
-        "always-open/sidekick": "^4.0",
-        "brick/money": "^0.5.0",
-        "laravelcollective/html": "^6.2"
+        "php": "^8.2.0|^8.3.0|^8.4.0",
+        "always-open/sidekick": "^5.0.2",
+        "brick/money": "^0.9.0",
+        "illuminate/contracts": "^11.42.1",
+        "spatie/laravel-package-tools": "^1.19.0"
     },
     "require-dev": {
-        "barryvdh/laravel-ide-helper": "^2.8",
-        "nunomaduro/collision": "^6.0",
-        "orchestra/testbench": "^7.0",
-        "phpunit/phpunit": "^9.3",
-        "spatie/laravel-ray": "^1.9",
-        "vimeo/psalm": "^4.4"
+        "barryvdh/laravel-ide-helper": "^v3.5",
+        "nunomaduro/collision": "^v8.6",
+        "orchestra/testbench": "^v9.11",
+        "phpunit/phpunit": "^11.0",
+        "spatie/laravel-ray": "^1.39",
+        "vimeo/psalm": "^6.8"
     },
     "autoload": {
         "psr-4": {
@@ -43,7 +42,7 @@
     },
     "scripts": {
         "psalm": "vendor/bin/psalm",
-        "test": "./vendor/bin/testbench package:test --parallel --no-coverage",
+        "test": "./vendor/bin/testbench package:test --no-coverage",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
     },
     "config": {
