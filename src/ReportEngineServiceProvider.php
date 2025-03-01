@@ -24,7 +24,7 @@ class ReportEngineServiceProvider extends PackageServiceProvider
     }
 
     #[\Override]
-    public function booting(Closure $callback)
+    public function bootingPackage(): void
     {
         RoutingRoute::macro('multiformat', function () {
             /**
@@ -32,7 +32,7 @@ class ReportEngineServiceProvider extends PackageServiceProvider
              */
             return $this->setUri($this->uri() . '{dot?}{_format?}')
                 ->where('dot', '\.')
-                ->where('_format', '(' . implode('|', config('report-engine.format')) . ')');
+                ->where('_format', '(' . implode('|', config('report-engine.allowed_multi_formats')) . ')?');
         });
     }
 }

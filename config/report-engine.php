@@ -14,6 +14,7 @@ if (app()->environment() !== 'production') {
 
 return [
     'allowed_multi_formats' => $multi_formats,
+    'default_format' => 'html',
     'locale' => [
         'default' => 'en_us',
     ]

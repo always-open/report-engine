@@ -327,7 +327,7 @@ abstract class ReportBase implements Responsable, Arrayable
         ];
     }
 
-    public function toConfig() : JsonResponse
+    public function toConfig($request) : JsonResponse
     {
         return response()->json($this->getConfig(true));
     }
@@ -362,7 +362,7 @@ abstract class ReportBase implements Responsable, Arrayable
         return route($this->getCurrentRequest()->route()->getName(), $this->getCurrentRequest()->route()->parameters());
     }
 
-    public function toJson(): JsonResponse
+    public function toJson($request): JsonResponse
     {
         $data = $this->buildColumns()
             ->initFeatures()
@@ -377,7 +377,7 @@ abstract class ReportBase implements Responsable, Arrayable
      *
      * @return Application|ResponseFactory|Response
      */
-    public function toSql()
+    public function toSql($request)
     {
         return response($this->getSql())
             ->header('Content-Type', 'text/plain');
@@ -388,7 +388,7 @@ abstract class ReportBase implements Responsable, Arrayable
      *
      * @return Application|ResponseFactory|Response
      */
-    public function toExplain()
+    public function toExplain($request)
     {
         /** @var Collection $response */
         $response = collect(DB::select("EXPLAIN " . $this->getSql()))->toJson(JSON_PRETTY_PRINT);
@@ -406,7 +406,7 @@ abstract class ReportBase implements Responsable, Arrayable
     #[\Override]
     public function toResponse($request) : SymfonyResponse
     {
-        $format = $this->getCurrentRequest()->route('_format') ?? self::HTML_FORMAT;
+        $format = $this->getCurrentRequest()->route('_format') ?? config('report-engine.default_format');
 
         $method = Str::camel('to_' . strtolower($format));
 
@@ -414,15 +414,15 @@ abstract class ReportBase implements Responsable, Arrayable
             abort(SymfonyResponse::HTTP_NOT_ACCEPTABLE, 'No valid response could be generated for type: ' . $format);
         }
 
-        return $this->{$method}();
+        return $this->{$method}($request);
     }
 
-    public function toReport(): JsonResponse
+    public function toReport($request): JsonResponse
     {
         return response()->json($this->toArray());
     }
 
-    public function toHtml() : Response
+    public function toHtml($request) : Response
     {
         return response()->view('report-engine::base-web', $this->getConfig());
     }
