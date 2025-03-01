@@ -2,7 +2,6 @@
 
 namespace AlwaysOpen\ReportEngine;
 
-use Closure;
 use Illuminate\Routing\Route as RoutingRoute;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
